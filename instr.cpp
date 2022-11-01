@@ -1,36 +1,35 @@
-//#include "instr.h"
-#include "sa.h"
-#include "ap_int.h"
+#include "instr.h"
 
-#define ITYPE ap_uint<32>
-#define I_BUF_SIZE 8 * 1024
-
-
-// operation code
-#define OP_LOAD_WEI		0
-#define OP_LOAD_IMG 	1
-#define OP_SAVE_BACK	2
-#define OP_MAX_POOL		3
-#define OP_MTX_MUL		4
-
-
-void load_instr(ITYPE *ddr_instr, ITYPE i_buf[I_BUF_SIZE], int instr_len, int offset);
-void load_weight(DTYPE *ddr, DTYPE buf[BUF_SIZE], int offset, int len);
-void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len);
-void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf[BUF_SIZE], int instr_len);
-
-
-void load_instr(ITYPE *ddr_instr, ITYPE i_buf[I_BUF_SIZE], int instr_len, int offset){
+void load_instr(ITYPE *ddr_instr, ITYPE i_buf[I_BUF_SIZE], int instr_len, int ddr_offset){
 	if(instr_len >= I_BUF_SIZE){
 		return;
 	}
 	for(int i = 0; i < instr_len; i++){
-		i_buf[i + offset] = ddr_instr[i];
+		i_buf[i] = ddr_instr[i + ddr_offset];
 	}
 }
 
-void load_weight(DTYPE *ddr, DTYPE buf[BUF_SIZE], int offset, int len){
+void load_weight(DTYPE *ddr, DTYPE buf_weight[BUF_SIZE], int ddr_offset, int len){
+	if(len > BUF_SIZE){
+		return;
+	}
+	for(int i = 0; i < len; i++){
+		buf_weight[i] = ddr[i + ddr_offset];
+	}
+}
 
+void load_feature(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len){
+	if(len > BUF_SIZE)
+		return;
+	for(int i = 0; i < len; i++){
+		buf_feature[i] = ddr[i + ddr_offset];
+	}
+}
+
+void save_back(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len){
+	for(int i = 0; i < len; i++){
+		ddr[ddr_offset + i] = buf_feature[i];
+	}
 }
 
 void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
@@ -38,7 +37,8 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
 #pragma HLS INTERFACE m_axi depth=3300 port=ddr_instr
 	int offset = 0;
 	static ITYPE i_buf[I_BUF_SIZE];
-	static DTYPE buf[BUF_SIZE];
+	static DTYPE buf_weight[BUF_SIZE];
+	static DTYPE buf_feature[BUF_SIZE];
 	while(offset < instr_len && instr_len > 0){
 		int len = 0;
 		if(instr_len >= I_BUF_SIZE){
@@ -49,33 +49,45 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
 		instr_len -= len;
 		load_instr(ddr_instr, i_buf, len, offset);
 		offset += len;
-		run(ddr, i_buf, buf, len);
+		run(ddr, i_buf, buf_weight, buf_feature, len);
 	}
 
 
 }
 
-void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf[BUF_SIZE], int instr_len){
+void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int instr_len){
 	for(int i = 0; i < instr_len; i++){
 		// fetch
 		ITYPE instruction = i_buf[i];
-//		switch(instruction(31, 29)){
-//		case(0):
-////			int offset = instruction(28, 13);
-////			int len = instruction(12, 0);
-////			load_weight(ddr, buf, offset, len);
-//			break;
-//		case(1):
-//			break;
-//		case(2):
-//			break;
-//		case(3):
-//			break;
-//		case(4):
-//			break;
-//		default:
-//			return;
-//		}
+		switch(instruction(31, 29)){
+		case(OP_LOAD_WEI):{
+			int ddr_offset = instruction(28, 13);
+			int len = instruction(12, 0);
+			load_weight(ddr, buf_weight, ddr_offset, len);
+			break;
+		}
+
+		case(OP_LOAD_IMG):{
+			int ddr_offset = instruction(28, 13);
+			int len = instruction(12, 0);
+			load_feature(ddr, buf_feature, ddr_offset, len);
+			break;
+		}
+		case(OP_SAVE_BACK):{
+			int ddr_offset = instruction(28, 13);
+			int len = instruction(12, 0);
+			save_back(ddr, buf_feature, ddr_offset, len);
+			break;
+		}
+		case(OP_MAX_POOL):{
+			break;
+		}
+		case(OP_MTX_MUL):{
+			break;
+		}
+		default:
+			return;
+		}
 
 
 		// decode
