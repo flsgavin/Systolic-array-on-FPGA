@@ -31,6 +31,18 @@ int main(){
 	FILE *fid;
 	fid = fopen("feature.dat", "rb");
 	fread(ddr, sizeof(DTYPE), 16384, fid);
-	DTYPE buf_feature[BUF_SIZE];
-	load_feature(ddr, buf_feature, 0, 1024);
+	static DTYPE buf_feature[BUF_SIZE];
+	static DTYPE buf_weight[BUF_SIZE];
+
+	static DTYPE A[N][N], B[N][N], C[N][N];
+
+	load_feature(ddr, buf_feature, 0, 4096);
+	load_weight(ddr, buf_weight, 4096, 4096);
+
+	load_matrix_from_buffer(buf_weight, buf_feature, 0, 0, A, B);
+
+	//void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr);
+
+
+
 }
