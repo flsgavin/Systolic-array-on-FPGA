@@ -1,8 +1,8 @@
 #ifndef __SA_H__
 #define __SA_H__
 
-#define N 64
-#define LEFT_SHIFT 6 		// logN
+#define N 32
+#define LEFT_SHIFT 5 		// logN
 
 #define BUF_SIZE 32 * 1024
 #define DTYPE int

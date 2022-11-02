@@ -5,17 +5,14 @@ void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_S
 
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
 #pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
-printf("HELLO \n");
+
 	for(int i = 0; i < N; i++){
 #pragma HLS PIPELINE II = 1
 		for(int j = 0; j < N; j++){
 			int offset = (i << LEFT_SHIFT) + j;
-			printf("%d %d \n", offset, i * N + j);
 			A[i][j] = buf_weight[A_start + offset];
-			//printf("%d ", A[i][j]);
 			B[i][j] = buf_feature[B_start + offset];
 		}
-		printf("\n");
 	}
 }
 

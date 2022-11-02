@@ -37,9 +37,26 @@ int main(){
 	static DTYPE A[N][N], B[N][N], C[N][N];
 
 	load_feature(ddr, buf_feature, 0, 4096);
-	load_weight(ddr, buf_weight, 4096, 4096);
 
+//	for(int i = 0; i < 4096; i++){
+//		printf("%x ", buf_feature[i]);
+//	}
+//	printf("\n*********************************************\n");
+	load_weight(ddr, buf_weight, 0, 4096);
+//	for(int i = 0; i < 4096; i++){
+//		printf("%x ", buf_weight[i]);
+//	}
+//	printf("\n*********************************************\n");
 	load_matrix_from_buffer(buf_weight, buf_feature, 0, 0, A, B);
+	matrix_mult(A, B, C, ACTIVE);
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			printf("%d ", C[i][j]);
+		}
+		printf("\n");
+	}
+
+
 
 	//void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr);
 
