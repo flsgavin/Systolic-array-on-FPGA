@@ -1,7 +1,7 @@
 #include "sa.h"
 
 
-void load_matrix_mult(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int A_start, int B_start, DTYPE A[N][N], DTYPE B[N][N]){
+void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int A_start, int B_start, DTYPE A[N][N], DTYPE B[N][N]){
 
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
 #pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
@@ -16,13 +16,26 @@ void load_matrix_mult(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], i
 	}
 }
 
-void write_matrix_mult(DTYPE buf_feature[BUF_SIZE], int C_start, DTYPE C[N][N]){
+//void write_matrix_to_buffer(DTYPE buf_feature[BUF_SIZE], int C_start, DTYPE C[N][N]){
+//#pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
+//	for(int i = 0; i < N; i++){
+//#pragma HLS PIPELINE II = 1
+//		for(int j = 0; j < N; j++){
+//			int offset = i << LEFT_SHIFT + j;
+//			buf_feature[C_start + offset] = C[i][j];
+//		}
+//	}
+//}
+
+void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr){
 #pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
+	if(buf_start_addr + (N << LEFT_SHIFT) >= BUF_SIZE)  // buf_start_addr + N * N >= BUF_SIZE
+		return;
 	for(int i = 0; i < N; i++){
 #pragma HLS PIPELINE II = 1
 		for(int j = 0; j < N; j++){
 			int offset = i << LEFT_SHIFT + j;
-			buf_feature[C_start + offset] = C[i][j];
+			buf_result[buf_start_addr + offset] = C[i][j];
 		}
 	}
 }

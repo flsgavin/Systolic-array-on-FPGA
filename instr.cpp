@@ -26,9 +26,9 @@ void load_feature(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int l
 	}
 }
 
-void save_back(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len){
+void save_back(DTYPE *ddr, DTYPE buf_result[BUF_SIZE], int ddr_offset, int len){
 	for(int i = 0; i < len; i++){
-		ddr[ddr_offset + i] = buf_feature[i];
+		ddr[ddr_offset + i] = buf_result[i];
 	}
 }
 
@@ -39,6 +39,7 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
 	static ITYPE i_buf[I_BUF_SIZE];
 	static DTYPE buf_weight[BUF_SIZE];
 	static DTYPE buf_feature[BUF_SIZE];
+	static DTYPE buf_result[BUF_SIZE];
 	while(offset < instr_len && instr_len > 0){
 		int len = 0;
 		if(instr_len >= I_BUF_SIZE){
@@ -55,7 +56,7 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
 
 }
 
-void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int instr_len){
+void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], DTYPE buf_result[BUF_SIZE], int instr_len){
 	for(int i = 0; i < instr_len; i++){
 		// fetch
 		ITYPE instruction = i_buf[i];
@@ -76,7 +77,7 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 		case(OP_SAVE_BACK):{
 			int ddr_offset = instruction(28, 13);
 			int len = instruction(12, 0);
-			save_back(ddr, buf_feature, ddr_offset, len);
+			save_back(ddr, buf_result, ddr_offset, len);
 			break;
 		}
 		case(OP_MAX_POOL):{

@@ -20,6 +20,7 @@ void load_weight(DTYPE *ddr, DTYPE buf_weight[BUF_SIZE], int ddr_offset, int len
 void load_feature(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len);
 void save_back(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len);
 void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len);
-void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int instr_len);
+void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE],
+		DTYPE buf_result[BUF_SIZE], int instr_len);
 
 #endif

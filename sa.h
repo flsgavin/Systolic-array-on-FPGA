@@ -7,6 +7,8 @@
 #define BUF_SIZE 32 * 1024
 #define DTYPE int
 
+#define ACTIVE true
+#define NO_ACTIVE false
 
 void matrix_mult(int A[N][N], int B[N][N], int C[N][N], bool relu);
 
