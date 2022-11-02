@@ -3,7 +3,7 @@
 #include <ap_int.h>
 #include "sa.h"
 
-#define ITYPE ap_uint<32>
+#define ITYPE ap_uint<64>
 #define I_BUF_SIZE 8 * 1024
 
 
@@ -13,7 +13,8 @@
 #define OP_SAVE_BACK	2
 #define OP_MAX_POOL		3
 #define OP_MTX_MUL		4
-
+#define OP_LOAD_MTX		5
+#define OP_SAVE_MTX		6
 
 void load_instr(ITYPE *ddr_instr, ITYPE i_buf[I_BUF_SIZE], int instr_len, int offset);
 void load_weight(DTYPE *ddr, DTYPE buf_weight[BUF_SIZE], int ddr_offset, int len);

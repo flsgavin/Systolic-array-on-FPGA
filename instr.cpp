@@ -50,7 +50,7 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len){
 		instr_len -= len;
 		load_instr(ddr_instr, i_buf, len, offset);
 		offset += len;
-		run(ddr, i_buf, buf_weight, buf_feature, len);
+		run(ddr, i_buf, buf_weight, buf_feature, buf_result, len);
 	}
 
 
@@ -60,23 +60,23 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 	for(int i = 0; i < instr_len; i++){
 		// fetch
 		ITYPE instruction = i_buf[i];
-		switch(instruction(31, 29)){
+		switch(instruction(63, 61)){
 		case(OP_LOAD_WEI):{
-			int ddr_offset = instruction(28, 13);
-			int len = instruction(12, 0);
+			int ddr_offset = instruction(28 + 32, 13 + 32);
+			int len = instruction(12 + 32, 0 + 32);
 			load_weight(ddr, buf_weight, ddr_offset, len);
 			break;
 		}
 
 		case(OP_LOAD_IMG):{
-			int ddr_offset = instruction(28, 13);
-			int len = instruction(12, 0);
+			int ddr_offset = instruction(28 + 32, 13 + 32);
+			int len = instruction(12 + 32, 0 + 32);
 			load_feature(ddr, buf_feature, ddr_offset, len);
 			break;
 		}
 		case(OP_SAVE_BACK):{
-			int ddr_offset = instruction(28, 13);
-			int len = instruction(12, 0);
+			int ddr_offset = instruction(28 + 32, 13 + 32);
+			int len = instruction(12 + 32, 0 + 32);
 			save_back(ddr, buf_result, ddr_offset, len);
 			break;
 		}
@@ -84,6 +84,15 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 			break;
 		}
 		case(OP_MTX_MUL):{
+			int feature_offset = 0; //TODO
+			int weight_offset = 0;	//TODO
+
+			break;
+		}
+		case(OP_LOAD_MTX):{
+			break;
+		}
+		case(OP_SAVE_MTX):{
 			break;
 		}
 		default:
