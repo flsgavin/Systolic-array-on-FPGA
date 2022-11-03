@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="matrix_mult.wdb" id="1">
+         <top_modules>
+            <top_module name="apatb_matrix_mult_top" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="35031086388fs"></ZoomEndTime>
+      <Cursor1Time time="41175000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <ValueColumnWidth column_width="317"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="113" />
+   <wvobject fp_name="group1" type="group">
+      <obj_property name="label">Design Top Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="group2" type="group">
+         <obj_property name="label">C Outputs</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="group3" type="group">
+            <obj_property name="label">C(memory)</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/C_d0" type="array">
+               <obj_property name="ElementShortName">C_d0[31:0]</obj_property>
+               <obj_property name="ObjectShortName">C_d0[31:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/C_we0" type="logic">
+               <obj_property name="ElementShortName">C_we0</obj_property>
+               <obj_property name="ObjectShortName">C_we0</obj_property>
+               <obj_property name="CustomSignalColor">#ffff00</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/C_ce0" type="logic">
+               <obj_property name="ElementShortName">C_ce0</obj_property>
+               <obj_property name="ObjectShortName">C_ce0</obj_property>
+               <obj_property name="CustomSignalColor">#ffff00</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/C_address0" type="array">
+               <obj_property name="ElementShortName">C_address0[11:0]</obj_property>
+               <obj_property name="ObjectShortName">C_address0[11:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group8" type="group">
+         <obj_property name="label">C Inpugroup8ts</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="group9" type="group">
+            <obj_property name="label">relu(wire)</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/relu" type="logic">
+               <obj_property name="ElementShortName">relu</obj_property>
+               <obj_property name="ObjectShortName">relu</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="group11" type="group">
+            <obj_property name="label">B(memory)</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/B_q0" type="array">
+               <obj_property name="ElementShortName">B_q0[2047:0]</obj_property>
+               <obj_property name="ObjectShortName">B_q0[2047:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/B_ce0" type="logic">
+               <obj_property name="ElementShortName">B_ce0</obj_property>
+               <obj_property name="ObjectShortName">B_ce0</obj_property>
+               <obj_property name="CustomSignalColor">#ffff00</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/B_address0" type="array">
+               <obj_property name="ElementShortName">B_address0[5:0]</obj_property>
+               <obj_property name="ObjectShortName">B_address0[5:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="group15" type="group">
+            <obj_property name="label">A(memory)</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/A_q0" type="array">
+               <obj_property name="ElementShortName">A_q0[2047:0]</obj_property>
+               <obj_property name="ObjectShortName">A_q0[2047:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/A_ce0" type="logic">
+               <obj_property name="ElementShortName">A_ce0</obj_property>
+               <obj_property name="ObjectShortName">A_ce0</obj_property>
+               <obj_property name="CustomSignalColor">#ffff00</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+            </wvobject>
+            <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/A_address0" type="array">
+               <obj_property name="ElementShortName">A_address0[5:0]</obj_property>
+               <obj_property name="ObjectShortName">A_address0[5:0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group19" type="group">
+         <obj_property name="label">Block-level IO Handshake</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_start" type="logic">
+            <obj_property name="ElementShortName">ap_start</obj_property>
+            <obj_property name="ObjectShortName">ap_start</obj_property>
+         </wvobject>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_done" type="logic">
+            <obj_property name="ElementShortName">ap_done</obj_property>
+            <obj_property name="ObjectShortName">ap_done</obj_property>
+         </wvobject>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_idle" type="logic">
+            <obj_property name="ElementShortName">ap_idle</obj_property>
+            <obj_property name="ObjectShortName">ap_idle</obj_property>
+         </wvobject>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_ready" type="logic">
+            <obj_property name="ElementShortName">ap_ready</obj_property>
+            <obj_property name="ObjectShortName">ap_ready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group24" type="group">
+         <obj_property name="label">Reset</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_rst" type="logic">
+            <obj_property name="ElementShortName">ap_rst</obj_property>
+            <obj_property name="ObjectShortName">ap_rst</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group26" type="group">
+         <obj_property name="label">Clock</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/apatb_matrix_mult_top/AESL_inst_matrix_mult/ap_clk" type="logic">
+            <obj_property name="ElementShortName">ap_clk</obj_property>
+            <obj_property name="ObjectShortName">ap_clk</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_clock" type="logic">
+      <obj_property name="ElementShortName">AESL_clock</obj_property>
+      <obj_property name="ObjectShortName">AESL_clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ce" type="logic">
+      <obj_property name="ElementShortName">ce</obj_property>
+      <obj_property name="ObjectShortName">ce</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/tb_continue" type="logic">
+      <obj_property name="ElementShortName">tb_continue</obj_property>
+      <obj_property name="ObjectShortName">tb_continue</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_start" type="logic">
+      <obj_property name="ElementShortName">AESL_start</obj_property>
+      <obj_property name="ObjectShortName">AESL_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_reset" type="logic">
+      <obj_property name="ElementShortName">AESL_reset</obj_property>
+      <obj_property name="ObjectShortName">AESL_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_ce" type="logic">
+      <obj_property name="ElementShortName">AESL_ce</obj_property>
+      <obj_property name="ObjectShortName">AESL_ce</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_ready" type="logic">
+      <obj_property name="ElementShortName">AESL_ready</obj_property>
+      <obj_property name="ObjectShortName">AESL_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_idle" type="logic">
+      <obj_property name="ElementShortName">AESL_idle</obj_property>
+      <obj_property name="ObjectShortName">AESL_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_continue" type="logic">
+      <obj_property name="ElementShortName">AESL_continue</obj_property>
+      <obj_property name="ObjectShortName">AESL_continue</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_done" type="logic">
+      <obj_property name="ElementShortName">AESL_done</obj_property>
+      <obj_property name="ObjectShortName">AESL_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_done_delay" type="logic">
+      <obj_property name="ElementShortName">AESL_done_delay</obj_property>
+      <obj_property name="ObjectShortName">AESL_done_delay</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_done_delay2" type="logic">
+      <obj_property name="ElementShortName">AESL_done_delay2</obj_property>
+      <obj_property name="ObjectShortName">AESL_done_delay2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_ready_delay" type="logic">
+      <obj_property name="ElementShortName">AESL_ready_delay</obj_property>
+      <obj_property name="ObjectShortName">AESL_ready_delay</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready" type="logic">
+      <obj_property name="ElementShortName">ready</obj_property>
+      <obj_property name="ObjectShortName">ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_wire" type="logic">
+      <obj_property name="ElementShortName">ready_wire</obj_property>
+      <obj_property name="ObjectShortName">ready_wire</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_start" type="logic">
+      <obj_property name="ElementShortName">ap_start</obj_property>
+      <obj_property name="ObjectShortName">ap_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_done" type="logic">
+      <obj_property name="ElementShortName">ap_done</obj_property>
+      <obj_property name="ObjectShortName">ap_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_idle" type="logic">
+      <obj_property name="ElementShortName">ap_idle</obj_property>
+      <obj_property name="ObjectShortName">ap_idle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_ready" type="logic">
+      <obj_property name="ElementShortName">ap_ready</obj_property>
+      <obj_property name="ObjectShortName">ap_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/A_address0" type="array">
+      <obj_property name="ElementShortName">A_address0[5:0]</obj_property>
+      <obj_property name="ObjectShortName">A_address0[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/A_ce0" type="logic">
+      <obj_property name="ElementShortName">A_ce0</obj_property>
+      <obj_property name="ObjectShortName">A_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/A_q0" type="array">
+      <obj_property name="ElementShortName">A_q0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">A_q0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/B_address0" type="array">
+      <obj_property name="ElementShortName">B_address0[5:0]</obj_property>
+      <obj_property name="ObjectShortName">B_address0[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/B_ce0" type="logic">
+      <obj_property name="ElementShortName">B_ce0</obj_property>
+      <obj_property name="ObjectShortName">B_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/B_q0" type="array">
+      <obj_property name="ElementShortName">B_q0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">B_q0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/C_address0" type="array">
+      <obj_property name="ElementShortName">C_address0[11:0]</obj_property>
+      <obj_property name="ObjectShortName">C_address0[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/C_ce0" type="logic">
+      <obj_property name="ElementShortName">C_ce0</obj_property>
+      <obj_property name="ObjectShortName">C_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/C_we0" type="logic">
+      <obj_property name="ElementShortName">C_we0</obj_property>
+      <obj_property name="ObjectShortName">C_we0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/C_d0" type="array">
+      <obj_property name="ElementShortName">C_d0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">C_d0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/relu" type="logic">
+      <obj_property name="ElementShortName">relu</obj_property>
+      <obj_property name="ObjectShortName">relu</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/done_cnt" type="array">
+      <obj_property name="ElementShortName">done_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">done_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_ready_cnt" type="array">
+      <obj_property name="ElementShortName">AESL_ready_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">AESL_ready_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_cnt" type="array">
+      <obj_property name="ElementShortName">ready_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ready_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_initial" type="logic">
+      <obj_property name="ElementShortName">ready_initial</obj_property>
+      <obj_property name="ObjectShortName">ready_initial</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_initial_n" type="logic">
+      <obj_property name="ElementShortName">ready_initial_n</obj_property>
+      <obj_property name="ObjectShortName">ready_initial_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_last_n" type="logic">
+      <obj_property name="ElementShortName">ready_last_n</obj_property>
+      <obj_property name="ObjectShortName">ready_last_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_delay_last_n" type="logic">
+      <obj_property name="ElementShortName">ready_delay_last_n</obj_property>
+      <obj_property name="ObjectShortName">ready_delay_last_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/done_delay_last_n" type="logic">
+      <obj_property name="ElementShortName">done_delay_last_n</obj_property>
+      <obj_property name="ObjectShortName">done_delay_last_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/interface_done" type="logic">
+      <obj_property name="ElementShortName">interface_done</obj_property>
+      <obj_property name="ObjectShortName">interface_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_clk" type="logic">
+      <obj_property name="ElementShortName">ap_clk</obj_property>
+      <obj_property name="ObjectShortName">ap_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_rst" type="logic">
+      <obj_property name="ElementShortName">ap_rst</obj_property>
+      <obj_property name="ObjectShortName">ap_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_rst_n" type="logic">
+      <obj_property name="ElementShortName">ap_rst_n</obj_property>
+      <obj_property name="ObjectShortName">ap_rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_ce0" type="logic">
+      <obj_property name="ElementShortName">arrayA_ce0</obj_property>
+      <obj_property name="ObjectShortName">arrayA_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_ce1" type="logic">
+      <obj_property name="ElementShortName">arrayA_ce1</obj_property>
+      <obj_property name="ObjectShortName">arrayA_ce1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_we0" type="logic">
+      <obj_property name="ElementShortName">arrayA_we0</obj_property>
+      <obj_property name="ObjectShortName">arrayA_we0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_we1" type="logic">
+      <obj_property name="ElementShortName">arrayA_we1</obj_property>
+      <obj_property name="ObjectShortName">arrayA_we1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_address0" type="array">
+      <obj_property name="ElementShortName">arrayA_address0[5:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_address0[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_address1" type="array">
+      <obj_property name="ElementShortName">arrayA_address1[5:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_address1[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_din0" type="array">
+      <obj_property name="ElementShortName">arrayA_din0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_din0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_din1" type="array">
+      <obj_property name="ElementShortName">arrayA_din1[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_din1[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_dout0" type="array">
+      <obj_property name="ElementShortName">arrayA_dout0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_dout0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_dout1" type="array">
+      <obj_property name="ElementShortName">arrayA_dout1[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayA_dout1[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_ready" type="logic">
+      <obj_property name="ElementShortName">arrayA_ready</obj_property>
+      <obj_property name="ObjectShortName">arrayA_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayA_done" type="logic">
+      <obj_property name="ElementShortName">arrayA_done</obj_property>
+      <obj_property name="ObjectShortName">arrayA_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_ce0" type="logic">
+      <obj_property name="ElementShortName">arrayB_ce0</obj_property>
+      <obj_property name="ObjectShortName">arrayB_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_ce1" type="logic">
+      <obj_property name="ElementShortName">arrayB_ce1</obj_property>
+      <obj_property name="ObjectShortName">arrayB_ce1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_we0" type="logic">
+      <obj_property name="ElementShortName">arrayB_we0</obj_property>
+      <obj_property name="ObjectShortName">arrayB_we0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_we1" type="logic">
+      <obj_property name="ElementShortName">arrayB_we1</obj_property>
+      <obj_property name="ObjectShortName">arrayB_we1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_address0" type="array">
+      <obj_property name="ElementShortName">arrayB_address0[5:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_address0[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_address1" type="array">
+      <obj_property name="ElementShortName">arrayB_address1[5:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_address1[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_din0" type="array">
+      <obj_property name="ElementShortName">arrayB_din0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_din0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_din1" type="array">
+      <obj_property name="ElementShortName">arrayB_din1[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_din1[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_dout0" type="array">
+      <obj_property name="ElementShortName">arrayB_dout0[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_dout0[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_dout1" type="array">
+      <obj_property name="ElementShortName">arrayB_dout1[2047:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayB_dout1[2047:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_ready" type="logic">
+      <obj_property name="ElementShortName">arrayB_ready</obj_property>
+      <obj_property name="ObjectShortName">arrayB_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayB_done" type="logic">
+      <obj_property name="ElementShortName">arrayB_done</obj_property>
+      <obj_property name="ObjectShortName">arrayB_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_ce0" type="logic">
+      <obj_property name="ElementShortName">arrayC_ce0</obj_property>
+      <obj_property name="ObjectShortName">arrayC_ce0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_ce1" type="logic">
+      <obj_property name="ElementShortName">arrayC_ce1</obj_property>
+      <obj_property name="ObjectShortName">arrayC_ce1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_we0" type="logic">
+      <obj_property name="ElementShortName">arrayC_we0</obj_property>
+      <obj_property name="ObjectShortName">arrayC_we0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_we1" type="logic">
+      <obj_property name="ElementShortName">arrayC_we1</obj_property>
+      <obj_property name="ObjectShortName">arrayC_we1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_address0" type="array">
+      <obj_property name="ElementShortName">arrayC_address0[11:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_address0[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_address1" type="array">
+      <obj_property name="ElementShortName">arrayC_address1[11:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_address1[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_din0" type="array">
+      <obj_property name="ElementShortName">arrayC_din0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_din0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_din1" type="array">
+      <obj_property name="ElementShortName">arrayC_din1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_din1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_dout0" type="array">
+      <obj_property name="ElementShortName">arrayC_dout0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_dout0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_dout1" type="array">
+      <obj_property name="ElementShortName">arrayC_dout1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">arrayC_dout1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_ready" type="logic">
+      <obj_property name="ElementShortName">arrayC_ready</obj_property>
+      <obj_property name="ObjectShortName">arrayC_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/arrayC_done" type="logic">
+      <obj_property name="ElementShortName">arrayC_done</obj_property>
+      <obj_property name="ObjectShortName">arrayC_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_REG_relu" type="array">
+      <obj_property name="ElementShortName">AESL_REG_relu[0:0]</obj_property>
+      <obj_property name="ObjectShortName">AESL_REG_relu[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/all_finish" type="logic">
+      <obj_property name="ElementShortName">all_finish</obj_property>
+      <obj_property name="ObjectShortName">all_finish</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/end_A" type="logic">
+      <obj_property name="ElementShortName">end_A</obj_property>
+      <obj_property name="ObjectShortName">end_A</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_A" type="array">
+      <obj_property name="ElementShortName">size_A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_A[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_A_backup" type="array">
+      <obj_property name="ElementShortName">size_A_backup[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_A_backup[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/end_B" type="logic">
+      <obj_property name="ElementShortName">end_B</obj_property>
+      <obj_property name="ObjectShortName">end_B</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_B" type="array">
+      <obj_property name="ElementShortName">size_B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_B[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_B_backup" type="array">
+      <obj_property name="ElementShortName">size_B_backup[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_B_backup[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/end_C" type="logic">
+      <obj_property name="ElementShortName">end_C</obj_property>
+      <obj_property name="ObjectShortName">end_C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_C" type="array">
+      <obj_property name="ElementShortName">size_C[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_C[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_C_backup" type="array">
+      <obj_property name="ElementShortName">size_C_backup[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_C_backup[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/end_relu" type="logic">
+      <obj_property name="ElementShortName">end_relu</obj_property>
+      <obj_property name="ObjectShortName">end_relu</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_relu" type="array">
+      <obj_property name="ElementShortName">size_relu[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_relu[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/size_relu_backup" type="array">
+      <obj_property name="ElementShortName">size_relu_backup[31:0]</obj_property>
+      <obj_property name="ObjectShortName">size_relu_backup[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/dump_tvout_finish_C" type="logic">
+      <obj_property name="ElementShortName">dump_tvout_finish_C</obj_property>
+      <obj_property name="ObjectShortName">dump_tvout_finish_C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/clk_cnt" type="array">
+      <obj_property name="ElementShortName">clk_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_ready_p1" type="logic">
+      <obj_property name="ElementShortName">AESL_ready_p1</obj_property>
+      <obj_property name="ObjectShortName">AESL_ready_p1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AESL_start_p1" type="logic">
+      <obj_property name="ElementShortName">AESL_start_p1</obj_property>
+      <obj_property name="ObjectShortName">AESL_start_p1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/start_timestamp" type="array">
+      <obj_property name="ElementShortName">start_timestamp[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">start_timestamp[0:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/start_cnt" type="array">
+      <obj_property name="ElementShortName">start_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">start_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ready_timestamp" type="array">
+      <obj_property name="ElementShortName">ready_timestamp[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">ready_timestamp[0:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/ap_ready_cnt" type="array">
+      <obj_property name="ElementShortName">ap_ready_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ap_ready_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/finish_timestamp" type="array">
+      <obj_property name="ElementShortName">finish_timestamp[0:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">finish_timestamp[0:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/finish_cnt" type="array">
+      <obj_property name="ElementShortName">finish_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">finish_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/progress_timeout" type="array">
+      <obj_property name="ElementShortName">progress_timeout[31:0]</obj_property>
+      <obj_property name="ObjectShortName">progress_timeout[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/AUTOTB_TRANSACTION_NUM" type="array">
+      <obj_property name="ElementShortName">AUTOTB_TRANSACTION_NUM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">AUTOTB_TRANSACTION_NUM[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/PROGRESS_TIMEOUT" type="array">
+      <obj_property name="ElementShortName">PROGRESS_TIMEOUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PROGRESS_TIMEOUT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/LATENCY_ESTIMATION" type="array">
+      <obj_property name="ElementShortName">LATENCY_ESTIMATION[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LATENCY_ESTIMATION[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/LENGTH_A" type="array">
+      <obj_property name="ElementShortName">LENGTH_A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LENGTH_A[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/LENGTH_B" type="array">
+      <obj_property name="ElementShortName">LENGTH_B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LENGTH_B[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/LENGTH_C" type="array">
+      <obj_property name="ElementShortName">LENGTH_C[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LENGTH_C[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/apatb_matrix_mult_top/LENGTH_relu" type="array">
+      <obj_property name="ElementShortName">LENGTH_relu[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LENGTH_relu[31:0]</obj_property>
+   </wvobject>
+</wave_config>

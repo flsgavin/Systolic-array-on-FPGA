@@ -1,0 +1,9 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/AESL_automem_A.v,1667281188,systemVerilog,,,,AESL_automem_A,C:/Xilinx/Vivado/2018.3/data/xsim/ip/xsim_ip.ini,axi_protocol_checker_v1_1_12;axi_protocol_checker_v1_1_13;axis_protocol_checker_v1_1_11;axis_protocol_checker_v1_1_12;ieee_proposed=./ieee_proposed;smartconnect_v1_0;unisims_ver;xil_defaultlib;xpm,,,,,,
+C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/AESL_automem_B.v,1667281188,systemVerilog,,,,AESL_automem_B,C:/Xilinx/Vivado/2018.3/data/xsim/ip/xsim_ip.ini,axi_protocol_checker_v1_1_12;axi_protocol_checker_v1_1_13;axis_protocol_checker_v1_1_11;axis_protocol_checker_v1_1_12;ieee_proposed=./ieee_proposed;smartconnect_v1_0;unisims_ver;xil_defaultlib;xpm,,,,,,
+C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/AESL_automem_C.v,1667281188,systemVerilog,,,,AESL_automem_C,C:/Xilinx/Vivado/2018.3/data/xsim/ip/xsim_ip.ini,axi_protocol_checker_v1_1_12;axi_protocol_checker_v1_1_13;axis_protocol_checker_v1_1_11;axis_protocol_checker_v1_1_12;ieee_proposed=./ieee_proposed;smartconnect_v1_0;unisims_ver;xil_defaultlib;xpm,,,,,,
+C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/matrix_mult.autotb.v,1667281188,systemVerilog,,,,apatb_matrix_mult_top,C:/Xilinx/Vivado/2018.3/data/xsim/ip/xsim_ip.ini,axi_protocol_checker_v1_1_12;axi_protocol_checker_v1_1_13;axis_protocol_checker_v1_1_11;axis_protocol_checker_v1_1_12;ieee_proposed=./ieee_proposed;smartconnect_v1_0;unisims_ver;xil_defaultlib;xpm,,,,,,
+C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/matrix_mult.v,1667280984,systemVerilog,,,,matrix_mult,C:/Xilinx/Vivado/2018.3/data/xsim/ip/xsim_ip.ini,axi_protocol_checker_v1_1_12;axi_protocol_checker_v1_1_13;axis_protocol_checker_v1_1_11;axis_protocol_checker_v1_1_12;ieee_proposed=./ieee_proposed;smartconnect_v1_0;unisims_ver;xil_defaultlib;xpm,,,,,,

@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"matrix_mult": {
+			"proto_instances": {
+			}
+		}
+	}
+}

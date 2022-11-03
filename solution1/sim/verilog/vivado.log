@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Tue Nov  1 13:40:19 2022
+# Process ID: 3064
+# Current directory: C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog
+# Command line: vivado.exe -source open_wave.tcl
+# Log file: C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/vivado.log
+# Journal file: C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog\vivado.jou
+#-----------------------------------------------------------
+start_gui
+source open_wave.tcl
+# current_fileset
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+IINFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.current_fileset: Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 753.617 ; gain = 130.395
+# open_wave_database matrix_mult.wdb
+open_wave_config C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/matrix_mult.wcfg
+cclose_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Nov  1 13:42:32 2022...
+t_top/rst}} {{/apatb_matrix_mult_top/start}} {{/apatb_matrix_mult_top/ce}} {{/apatb_matrix_mult_top/tb_continue}} {{/apatb_matrix_mult_top/AESL_start}} {{/apatb_matrix_mult_top/AESL_reset}} {{/apatb_matrix_mult_top/AESL_ce}} {{/apatb_matrix_mult_top/AESL_ready}} {{/apatb_matrix_mult_top/AESL_idle}} {{/apatb_matrix_mult_top/AESL_continue}} {{/apatb_matrix_mult_top/AESL_done}} {{/apatb_matrix_mult_top/AESL_done_delay}} {{/apatb_matrix_mult_top/AESL_done_delay2}} {{/apatb_matrix_mult_top/AESL_ready_delay}} {{/apatb_matrix_mult_top/ready}} {{/apatb_matrix_mult_top/ready_wire}} {{/apatb_matrix_mult_top/ap_start}} {{/apatb_matrix_mult_top/ap_done}} {{/apatb_matrix_mult_top/ap_idle}} {{/apatb_matrix_mult_top/ap_ready}} {{/apatb_matrix_mult_top/A_address0}} {{/apatb_matrix_mult_top/A_ce0}} {{/apatb_matrix_mult_top/A_q0}} {{/apatb_matrix_mult_top/B_address0}} {{/apatb_matrix_mult_top/B_ce0}} {{/apatb_matrix_mult_top/B_q0}} {{/apatb_matrix_mult_top/C_address0}} {{/apatb_matrix_mult_top/C_ce0}} {{/apatb_matrix_mult_top/C_we0}} {{/apatb_matrix_mult_top/C_d0}} {{/apatb_matrix_mult_top/relu}} {{/apatb_matrix_mult_top/done_cnt}} {{/apatb_matrix_mult_top/AESL_ready_cnt}} {{/apatb_matrix_mult_top/ready_cnt}} {{/apatb_matrix_mult_top/ready_initial}} {{/apatb_matrix_mult_top/ready_initial_n}} {{/apatb_matrix_mult_top/ready_last_n}} {{/apatb_matrix_mult_top/ready_delay_last_n}} {{/apatb_matrix_mult_top/done_delay_last_n}} {{/apatb_matrix_mult_top/interface_done}} {{/apatb_matrix_mult_top/ap_clk}} {{/apatb_matrix_mult_top/ap_rst}} {{/apatb_matrix_mult_top/ap_rst_n}} {{/apatb_matrix_mult_top/arrayA_ce0}} {{/apatb_matrix_mult_top/arrayA_ce1}} {{/apatb_matrix_mult_top/arrayA_we0}} {{/apatb_matrix_mult_top/arrayA_we1}} {{/apatb_matrix_mult_top/arrayA_address0}} {{/apatb_matrix_mult_top/arrayA_address1}} {{/apatb_matrix_mult_top/arrayA_din0}} {{/apatb_matrix_mult_top/arrayA_din1}} {{/apatb_matrix_mult_top/arrayA_dout0}} {{/apatb_matrix_mult_top/arrayA_dout1}} {{/apatb_matrix_mult_top/arrayA_ready}} {{/apatb_matrix_mult_top/arrayA_done}} {{/apatb_matrix_mult_top/arrayB_ce0}} {{/apatb_matrix_mult_top/arrayB_ce1}} {{/apatb_matrix_mult_top/arrayB_we0}} {{/apatb_matrix_mult_top/arrayB_we1}} {{/apatb_matrix_mult_top/arrayB_address0}} {{/apatb_matrix_mult_top/arrayB_address1}} {{/apatb_matrix_mult_top/arrayB_din0}} {{/apatb_matrix_mult_top/arrayB_din1}} {{/apatb_matrix_mult_top/arrayB_dout0}} {{/apatb_matrix_mult_top/arrayB_dout1}} {{/apatb_matrix_mult_top/arrayB_ready}} {{/apatb_matrix_mult_top/arrayB_done}} {{/apatb_matrix_mult_top/arrayC_ce0}} {{/apatb_matrix_mult_top/arrayC_ce1}} {{/apatb_matrix_mult_top/arrayC_we0}} {{/apatb_matrix_mult_top/arrayC_we1}} {{/apatb_matrix_mult_top/arrayC_address0}} {{/apatb_matrix_mult_top/arrayC_address1}} {{/apatb_matrix_mult_top/arrayC_din0}} {{/apatb_matrix_mult_top/arrayC_din1}} {{/apatb_matrix_mult_top/arrayC_dout0}} {{/apatb_matrix_mult_top/arrayC_dout1}} {{/apatb_matrix_mult_top/arrayC_ready}} {{/apatb_matrix_mult_top/arrayC_done}} {{/apatb_matrix_mult_top/AESL_REG_relu}} {{/apatb_matrix_mult_top/all_finish}} {{/apatb_matrix_mult_top/end_A}} {{/apatb_matrix_mult_top/size_A}} {{/apatb_matrix_mult_top/size_A_backup}} {{/apatb_matrix_mult_top/end_B}} {{/apatb_matrix_mult_top/size_B}} {{/apatb_matrix_mult_top/size_B_backup}} {{/apatb_matrix_mult_top/end_C}} {{/apatb_matrix_mult_top/size_C}} {{/apatb_matrix_mult_top/size_C_backup}} {{/apatb_matrix_mult_top/end_relu}} {{/apatb_matrix_mult_top/size_relu}} {{/apatb_matrix_mult_top/size_relu_backup}} {{/apatb_matrix_mult_top/dump_tvout_finish_C}} {{/apatb_matrix_mult_top/clk_cnt}} {{/apatb_matrix_mult_top/AESL_ready_p1}} {{/apatb_matrix_mult_top/AESL_start_p1}} {{/apatb_matrix_mult_top/start_timestamp}} {{/apatb_matrix_mult_top/start_cnt}} {{/apatb_matrix_mult_top/ready_timestamp}} {{/apatb_matrix_mult_top/ap_ready_cnt}} {{/apatb_matrix_mult_top/finish_timestamp}} {{/apatb_matrix_mult_top/finish_cnt}} {{/apatb_matrix_mult_top/progress_timeout}} {{/apatb_matrix_mult_top/AUTOTB_TRANSACTION_NUM}} {{/apatb_matrix_mult_top/PROGRESS_TIMEOUT}} {{/apatb_matrix_mult_top/LATENCY_ESTIMATION}} {{/apatb_matrix_mult_top/LENGTH_A}} {{/apatb_matrix_mult_top/LENGTH_B}} {{/apatb_matrix_mult_top/LENGTH_C}} {{/apatb_matrix_mult_top/LENGTH_relu}} 
+save_wave_config {C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/sim/verilog/matrix_mult.wcfg}
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Nov  1 13:42:04 2022...

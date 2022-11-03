@@ -13,9 +13,9 @@ Pos** generate_map(int feature_h, int feature_w, int feature_c, int kernel_size,
 		for(int j = 0; j < out_w; j++){
 			int num_C = i / (((Wi - K) / s + 1) * ((Hi - K) / s + 1)); // 第几个特征图
 			int num_k = i % (((Wi - K) / s + 1) * ((Hi - K) / s + 1)); // 第几个卷积核
-			int zs = num_k / ((Wi - K) / s + 1) * Wi + num_k % ((Wi - K) / s + 1) ;
-			int add = j / K;
-			out[i][j] = Pos(num_C, zs + add * Wi + j % K);
+			int start = num_k / ((Wi - K) / s + 1) * Wi + num_k % ((Wi - K) / s + 1) ;
+			int offset = j / K;
+			out[i][j] = Pos(num_C, start + offset * Wi + j % K);
 		}
 	}
 	return out;
