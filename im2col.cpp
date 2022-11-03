@@ -25,3 +25,15 @@ void get_map_size(int feature_h, int feature_w, int feature_c, int kernel_size, 
 	out_h = feature_c*((feature_w - kernel_size) / stride + 1) * ((feature_h - kernel_size) / stride + 1);			//C*((Wi-K)/s+1)*((Hi-K)/s+1);
 	out_w = kernel_size * kernel_size;
 }
+
+
+void im2col(int feature_h, int feature_w, int feature_c, int kernel_size, int stride, int out_h,
+		int out_w, Pos** map, DTYPE buf_result[BUF_SIZE], int read_addr, int write_addr){
+	for(int i = 0; i < out_h; i++){
+		for(int j = 0; j < out_w; j++){
+			int ii = map[i][j].x;
+			int jj = map[i][j].y;
+			buf_result[write_addr + i * out_w + j] = buf_result[read_addr + ii * feature_w + jj];
+		}
+	}
+}

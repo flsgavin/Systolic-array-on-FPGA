@@ -1,5 +1,6 @@
 #include "sa.h"
 #include "instr.h"
+#include "im2col.h"
 #include <stdio.h>
 
 int main(){
@@ -33,33 +34,49 @@ int main(){
 	fread(ddr, sizeof(DTYPE), 16384, fid);
 	static DTYPE buf_feature[BUF_SIZE];
 	static DTYPE buf_weight[BUF_SIZE];
+	static DTYPE buf_result[BUF_SIZE];
 
 	static DTYPE A[N][N], B[N][N], C[N][N];
 
-	load_feature(ddr, buf_feature, 0, 4096);
+//	load_feature(ddr, buf_feature, 0, 4096);
+//
+//
+//	load_weight(ddr, buf_weight, 0, 4096);
+//
+//	load_matrix_from_buffer(buf_weight, buf_feature, 0, 0, A, B);
+//	matrix_mult(A, B, C, ACTIVE);
+//	for(int i = 0; i < N; i++){
+//		for(int j = 0; j < N; j++){
+//			printf("%d ", C[i][j]);
+//		}
+//		printf("\n");
+//	}
 
-//	for(int i = 0; i < 4096; i++){
-//		printf("%x ", buf_feature[i]);
-//	}
-//	printf("\n*********************************************\n");
-	load_weight(ddr, buf_weight, 0, 4096);
-//	for(int i = 0; i < 4096; i++){
-//		printf("%x ", buf_weight[i]);
-//	}
-//	printf("\n*********************************************\n");
-	load_matrix_from_buffer(buf_weight, buf_feature, 0, 0, A, B);
-	matrix_mult(A, B, C, ACTIVE);
-	for(int i = 0; i < N; i++){
-		for(int j = 0; j < N; j++){
-			printf("%d ", C[i][j]);
+	for(int i = 0; i < 3 * 3 * 3; i++){
+		buf_result[i] = i + 1;
+	}
+	int out_h = -1;
+	int out_w = -1;
+	get_map_size(3, 3, 3, 2, 1, out_h, out_w);
+
+	assert(out_h != -1 && out_w != -1);
+
+	Pos** map = generate_map(3, 3, 3, 2, 1, out_h, out_w);
+
+	im2col(3, 3, 3, 2, 1, out_h, out_w, map, buf_result, 0, 1024 * 16);
+
+	for(int i = 0; i < 3; i++){
+		for(int j = 0; j < 3  * 3; j++){
+			printf("%d ", buf_result[i * 3 * 3 + j]);
 		}
 		printf("\n");
 	}
-
-
-
-	//void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr);
-
+	for(int i = 0; i < out_h; i++){
+		for(int j = 0; j < out_w; j++){
+			printf("%d ", buf_result[1024 * 16 + i * out_w + j]);
+		}
+		printf("\n");
+	}
 
 
 }

@@ -76,6 +76,6 @@ void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]){
 	}
 }
 
-void im2col(DTYPE buf_result[BUF_SIZE], int feature_h, int feature_w, int feature_c, int kernel_size, int read_addr, int write_addr){
-
-}
+//void im2col(DTYPE buf_result[BUF_SIZE], int feature_h, int feature_w, int feature_c, int kernel_size, int read_addr, int write_addr){
+//
+//}
