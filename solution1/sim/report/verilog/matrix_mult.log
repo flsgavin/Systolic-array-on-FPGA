@@ -1,1 +1,0 @@
-ERROR: [COSIM-366] Cannot delete directory  'sim/verilog': it is being used by another program. Please close the program and try again.

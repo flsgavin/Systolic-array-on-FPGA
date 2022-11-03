@@ -1,0 +1,7 @@
+.apc/
+.reference/
+.settings/
+solution1/
+.cproject
+.project
+*.xml
