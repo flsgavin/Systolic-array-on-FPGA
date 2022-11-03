@@ -52,27 +52,21 @@ int main(){
 //		printf("\n");
 //	}
 
-	for(int i = 0; i < 3 * 3 * 3; i++){
+	for(int i = 0; i < 32 * 32 * 3; i++){
 		buf_result[i] = i + 1;
 	}
 	int out_h = -1;
 	int out_w = -1;
-	get_map_size(3, 3, 3, 2, 1, out_h, out_w);
+	get_map_size(32, 32, 3, 2, 1, out_h, out_w);
 
 	assert(out_h != -1 && out_w != -1);
 
-	Pos** map = generate_map(3, 3, 3, 2, 1, out_h, out_w);
+	Pos** map = generate_map(32, 32, 3, 2, 1, out_h, out_w);
 
 //	for(int i = 0; i < )
 
 	im2col(3, 3, 3, 2, 1, out_h, out_w, map, buf_result, 0, 1024 * 16);
 
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3  * 3; j++){
-			printf("%d ", buf_result[i * 3 * 3 + j]);
-		}
-		printf("\n");
-	}
 	for(int i = 0; i < out_h; i++){
 		for(int j = 0; j < out_w; j++){
 			printf("%d ", buf_result[1024 * 16 + i * out_w + j]);
