@@ -1,5 +1,5 @@
-# 1 "testTPU/instr.cpp"
-# 1 "testTPU/instr.cpp" 1
+# 1 "testTPU/src/instr.cpp"
+# 1 "testTPU/src/instr.cpp" 1
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 152 "<built-in>" 3
@@ -145,8 +145,10 @@ extern "C" {
 }
 # 9 "<command line>" 2
 # 1 "<built-in>" 2
-# 1 "testTPU/instr.cpp" 2
-# 1 "testTPU/sa.h" 1
+# 1 "testTPU/src/instr.cpp" 2
+# 1 "testTPU/src/instr.h" 1
+
+
 # 1 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_int.h" 1
 # 54 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_int.h"
 # 1 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_common.h" 1
@@ -6537,48 +6539,68 @@ inline bool operator!=(
 }
 # 381 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_fixed.h" 2
 # 350 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_int.h" 2
-# 2 "testTPU/sa.h" 2
+# 4 "testTPU/src/instr.h" 2
+# 1 "testTPU/src/sa.h" 1
+# 14 "testTPU/src/sa.h"
+void load_matrix_from_buffer(int buf_weight[32 * 1024], int buf_feature[32 * 1024],
+  int A_start, int B_start, int A[32][32], int B[32][32]);
 
+void write_back_to_result_buffer(int C[32][32], int buf_result[32 * 1024], int buf_start_addr);
 
+void matrix_mult(int A[32][32], int B[32][32], int C[32][32], bool relu);
 
+void max_2x2_pooling(int feature_in[32][32], int feature_out[32/2][32/2]);
+# 5 "testTPU/src/instr.h" 2
+# 19 "testTPU/src/instr.h"
+void load_instr(ap_uint<64> *ddr_instr, ap_uint<64> i_buf[8 * 1024], int instr_len, int offset);
+void load_weight(int *ddr, int buf_weight[32 * 1024], int ddr_offset, int len);
+void load_feature(int *ddr, int buf_feature[32 * 1024], int ddr_offset, int len);
+void save_back(int *ddr, int buf_result[32 * 1024], int ddr_offset, int len);
+void dsa(int *ddr, ap_uint<64> *ddr_instr, int instr_len);
+void run(int *ddr, ap_uint<64> i_buf[8 * 1024], int buf_weight[32 * 1024], int buf_feature[32 * 1024],
+  int buf_result[32 * 1024], int instr_len);
+# 2 "testTPU/src/instr.cpp" 2
 
-
-
-
-
-void matrix_mult(int A[64][64], int B[64][64], int C[64][64], bool relu);
-
-void max_2x2_pooling(int feature_in[64][64], int feature_out[64/2][64/2]);
-# 2 "testTPU/instr.cpp" 2
-# 1 "testTPU/instr.h" 1
-# 1 "C:/Xilinx/Vivado/2018.3/common/technology/autopilot\\ap_int.h" 1
-# 2 "testTPU/instr.h" 2
-# 15 "testTPU/instr.h"
-void load_instr(ap_uint<32> *ddr_instr, ap_uint<32> i_buf[8 * 1024], int instr_len, int offset);
-void dsa(ap_uint<256> *ddr, ap_uint<32> *ddr_instr, int instr_len);
-void run(ap_uint<256> *ddr, ap_uint<32> i_buf[8 * 1024], int instr_len);
-# 3 "testTPU/instr.cpp" 2
-
-
-
-
-
-
-void load_instr(ap_uint<32> *ddr_instr, ap_uint<32> i_buf[8 * 1024], int instr_len, int offset){_ssdm_SpecArrayDimSize(i_buf, 8192);
+void load_instr(ap_uint<64> *ddr_instr, ap_uint<64> i_buf[8 * 1024], int instr_len, int ddr_offset){_ssdm_SpecArrayDimSize(i_buf, 8192);
  if(instr_len >= 8 * 1024){
   return;
  }
  for(int i = 0; i < instr_len; i++){
-  i_buf[i + offset] = ddr_instr[i];
+  i_buf[i] = ddr_instr[i + ddr_offset];
  }
 }
 
-void dsa(ap_uint<256> *ddr, ap_uint<32> *ddr_instr, int instr_len){
+void load_weight(int *ddr, int buf_weight[32 * 1024], int ddr_offset, int len){_ssdm_SpecArrayDimSize(buf_weight, 32768);
+ if(len > 32 * 1024){
+  return;
+ }
+ for(int i = 0; i < len; i++){
+  buf_weight[i] = ddr[i + ddr_offset];
+ }
+}
+
+void load_feature(int *ddr, int buf_feature[32 * 1024], int ddr_offset, int len){_ssdm_SpecArrayDimSize(buf_feature, 32768);
+ if(len > 32 * 1024)
+  return;
+ for(int i = 0; i < len; i++){
+  buf_feature[i] = ddr[i + ddr_offset];
+ }
+}
+
+void save_back(int *ddr, int buf_result[32 * 1024], int ddr_offset, int len){_ssdm_SpecArrayDimSize(buf_result, 32768);
+ for(int i = 0; i < len; i++){
+  ddr[ddr_offset + i] = buf_result[i];
+ }
+}
+
+void dsa(int *ddr, ap_uint<64> *ddr_instr, int instr_len){
 _ssdm_op_SpecInterface(ddr, "m_axi", 0, 0, "", 0, 16384, "", "", "", 16, 16, 16, 16, "", "");
 _ssdm_op_SpecInterface(ddr_instr, "m_axi", 0, 0, "", 0, 3300, "", "", "", 16, 16, 16, 16, "", "");
  int offset = 0;
- static ap_uint<32> i_buf[8 * 1024];
- static int buf[32 * 1024];
+ static ap_uint<64> i_buf[8 * 1024];
+ static int buf_weight[32 * 1024];
+ static int buf_feature[32 * 1024];
+ static int buf_result[32 * 1024];
  while(offset < instr_len && instr_len > 0){
   int len = 0;
   if(instr_len >= 8 * 1024){
@@ -6589,23 +6611,53 @@ _ssdm_op_SpecInterface(ddr_instr, "m_axi", 0, 0, "", 0, 3300, "", "", "", 16, 16
   instr_len -= len;
   load_instr(ddr_instr, i_buf, len, offset);
   offset += len;
-  run(ddr, i_buf, len);
+  run(ddr, i_buf, buf_weight, buf_feature, buf_result, len);
  }
 
 
 }
 
-void run(ap_uint<256> *ddr, ap_uint<32> i_buf[8 * 1024], int instr_len){_ssdm_SpecArrayDimSize(i_buf, 8192);
+void run(int *ddr, ap_uint<64> i_buf[8 * 1024], int buf_weight[32 * 1024], int buf_feature[32 * 1024], int buf_result[32 * 1024], int instr_len){_ssdm_SpecArrayDimSize(i_buf, 8192);_ssdm_SpecArrayDimSize(buf_weight, 32768);_ssdm_SpecArrayDimSize(buf_feature, 32768);_ssdm_SpecArrayDimSize(buf_result, 32768);
  for(int i = 0; i < instr_len; i++){
 
-  ap_uint<32> instruction = i_buf[i];
-  switch(instruction(31, 29)){
-  case(0): break;
-  case(1): break;
-  case(2): break;
-  case(3): break;
-  case(4): break;
-  default: return;
+  ap_uint<64> instruction = i_buf[i];
+  switch(instruction(63, 61)){
+  case(0):{
+   int ddr_offset = instruction(28 + 32, 13 + 32);
+   int len = instruction(12 + 32, 0 + 32);
+   load_weight(ddr, buf_weight, ddr_offset, len);
+   break;
+  }
+
+  case(1):{
+   int ddr_offset = instruction(28 + 32, 13 + 32);
+   int len = instruction(12 + 32, 0 + 32);
+   load_feature(ddr, buf_feature, ddr_offset, len);
+   break;
+  }
+  case(2):{
+   int ddr_offset = instruction(28 + 32, 13 + 32);
+   int len = instruction(12 + 32, 0 + 32);
+   save_back(ddr, buf_result, ddr_offset, len);
+   break;
+  }
+  case(3):{
+   break;
+  }
+  case(4):{
+   int feature_offset = 0;
+   int weight_offset = 0;
+
+   break;
+  }
+  case(5):{
+   break;
+  }
+  case(6):{
+   break;
+  }
+  default:
+   return;
   }
 
 

@@ -4,7 +4,7 @@
 ## Copyright (C) 1986-2018 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project testTPU
-set_top matrix_mult
+set_top im2col
 add_files testTPU/src/im2col.cpp
 add_files testTPU/src/im2col.h
 add_files testTPU/src/instr.cpp

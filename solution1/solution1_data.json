@@ -26,7 +26,7 @@
     "ClockPeriod": "10",
     "IsCombLogic": "0",
     "II": "x",
-    "Latency": "4099",
+    "Latency": "1027",
     "Uncertainty": "1.25"
   },
   "Xdc": {"OocClocks": ["create_clock -name ap_clk -period 10.000 [get_ports ap_clk]"]},
@@ -43,8 +43,9 @@
   },
   "Files": {
     "CSource": [
-      "..\/sa.cpp",
-      "..\/instr.cpp"
+      "..\/src\/sa.cpp",
+      "..\/src\/instr.cpp",
+      "..\/src\/im2col.cpp"
     ],
     "Vhdl": ["impl\/vhdl\/matrix_mult.vhd"],
     "Verilog": ["impl\/verilog\/matrix_mult.v"],
@@ -60,48 +61,48 @@
     "A_address0": {
       "type": "data",
       "dir": "out",
-      "width": "6",
+      "width": "5",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "6"
+          "Width": "5"
         }}
     },
     "A_q0": {
       "type": "data",
       "dir": "in",
-      "width": "2048",
+      "width": "1024",
       "ctype": {"DATA": {
           "Type": "integer signed",
           "Width": "32",
-          "Bits": "2048"
+          "Bits": "1024"
         }}
     },
     "B_address0": {
       "type": "data",
       "dir": "out",
-      "width": "6",
+      "width": "5",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "6"
+          "Width": "5"
         }}
     },
     "B_q0": {
       "type": "data",
       "dir": "in",
-      "width": "2048",
+      "width": "1024",
       "ctype": {"DATA": {
           "Type": "integer signed",
           "Width": "32",
-          "Bits": "2048"
+          "Bits": "1024"
         }}
     },
     "C_address0": {
       "type": "data",
       "dir": "out",
-      "width": "12",
+      "width": "10",
       "ctype": {"DATA": {
           "Type": "null",
-          "Width": "12"
+          "Width": "10"
         }}
     },
     "C_d0": {
@@ -170,7 +171,7 @@
     },
     "A_address0": {
       "dir": "out",
-      "width": "6"
+      "width": "5"
     },
     "A_ce0": {
       "dir": "out",
@@ -178,11 +179,11 @@
     },
     "A_q0": {
       "dir": "in",
-      "width": "2048"
+      "width": "1024"
     },
     "B_address0": {
       "dir": "out",
-      "width": "6"
+      "width": "5"
     },
     "B_ce0": {
       "dir": "out",
@@ -190,11 +191,11 @@
     },
     "B_q0": {
       "dir": "in",
-      "width": "2048"
+      "width": "1024"
     },
     "C_address0": {
       "dir": "out",
-      "width": "12"
+      "width": "10"
     },
     "C_ce0": {
       "dir": "out",
@@ -221,17 +222,17 @@
     "A_q0": {
       "interfaceRef": "A_q0",
       "dir": "in",
-      "dataWidth": "2048",
+      "dataWidth": "1024",
       "busTypeRef": "ap_memory",
-      "arraySize": "64",
+      "arraySize": "32",
       "handshakeRef": "ap_none"
     },
     "B_q0": {
       "interfaceRef": "B_q0",
       "dir": "in",
-      "dataWidth": "2048",
+      "dataWidth": "1024",
       "busTypeRef": "ap_memory",
-      "arraySize": "64",
+      "arraySize": "32",
       "handshakeRef": "ap_none"
     },
     "C_d0": {
@@ -239,7 +240,7 @@
       "dir": "out",
       "dataWidth": "32",
       "busTypeRef": "ap_memory",
-      "arraySize": "4096",
+      "arraySize": "1024",
       "handshakeRef": "ap_none"
     },
     "relu": {
@@ -253,10 +254,10 @@
     "Hierarchy": {"ModuleName": "matrix_mult"},
     "Metrics": {"matrix_mult": {
         "Latency": {
-          "LatencyBest": "4099",
-          "LatencyAvg": "4099",
-          "LatencyWorst": "4099",
-          "PipelineII": "4100",
+          "LatencyBest": "1027",
+          "LatencyAvg": "1027",
+          "LatencyWorst": "1027",
+          "PipelineII": "1028",
           "PipelineDepth": "",
           "PipelineType": "none"
         },
@@ -267,15 +268,15 @@
         },
         "Loops": [{
             "Name": "Loop 1",
-            "TripCount": "4096",
-            "Latency": "4097",
+            "TripCount": "1024",
+            "Latency": "1025",
             "PipelineII": "1",
             "PipelineDepth": "3"
           }],
         "Area": {
-          "DSP48E": "192",
-          "FF": "376",
-          "LUT": "4871",
+          "DSP48E": "96",
+          "FF": "242",
+          "LUT": "2519",
           "BRAM_18K": "0",
           "URAM": "0"
         }
@@ -291,7 +292,7 @@
   },
   "GenData": {
     "DataVersion": "0.1",
-    "Time": "2022-11-01 16:12:39 +0800",
+    "Time": "2022-11-03 20:04:40 +0800",
     "ToolName": "vivado_hls",
     "ToolVersion": "2018.3"
   }

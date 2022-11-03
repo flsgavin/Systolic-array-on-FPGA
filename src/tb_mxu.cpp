@@ -35,6 +35,7 @@ int main(){
 	static DTYPE buf_feature[BUF_SIZE];
 	static DTYPE buf_weight[BUF_SIZE];
 	static DTYPE buf_result[BUF_SIZE];
+	static MTYPE buf_map[MAP_SIZE];
 
 	static DTYPE A[N][N], B[N][N], C[N][N];
 
@@ -61,11 +62,11 @@ int main(){
 
 	assert(out_h != -1 && out_w != -1);
 
-	Pos** map = generate_map(32, 32, 3, 2, 1, out_h, out_w);
+	generate_map(32, 32, 3, 2, 1, out_h, out_w, buf_map);
 
 //	for(int i = 0; i < )
 
-	im2col(3, 3, 3, 2, 1, out_h, out_w, map, buf_result, 0, 1024 * 16);
+	im2col(32, 32, 3, 2, 1, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
 	for(int i = 0; i < out_h; i++){
 		for(int j = 0; j < out_w; j++){

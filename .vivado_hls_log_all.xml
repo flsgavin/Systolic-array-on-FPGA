@@ -2,62 +2,15 @@
 <vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
   <errorLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="ERROR: [HLS 200-70] Synthesizability check failed.&#xD;&#xA;command 'ap_source' returned error code&#xD;&#xA;    while executing&#xD;&#xA;&quot;source C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/csynth.tcl&quot;&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;hls::main C:/Users/Gavin/AppData/Roaming/Xilinx/Vivado/testTPU/solution1/csynth.tcl&quot;&#xD;&#xA;    (&quot;uplevel&quot; body line 1)&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;uplevel 1 hls::main {*}$args&quot;&#xD;&#xA;    (procedure &quot;hls_proc&quot; line 5)&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;hls_proc $argv&quot;&#xD;&#xA;" projectName="testTPU" solutionName="solution1" date="2022-11-03T20:07:30.681+0800"/>
+        <logs message="ERROR: [SYNCHK 200-61] testTPU/src/im2col.cpp:34: unsupported memory access on variable 'map.x' which is (or contains) an array with unknown size at compile time." projectName="testTPU" solutionName="solution1" date="2022-11-03T20:07:30.629+0800"/>
+        <logs message="ERROR: [SYNCHK 200-11] testTPU/src/im2col.cpp:31: Argument 'map.x' of function 'im2col' (testTPU/src/im2col.cpp:30) has an unsynthesizable type (possible cause(s): pointer to pointer or global pointer)." projectName="testTPU" solutionName="solution1" date="2022-11-03T20:07:30.621+0800"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>
-      <csimLog>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-03T19:53:29.859+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-03T15:38:16.414+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:51:07.834+0800"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:51:07.827+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:49:25.824+0800"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:49:25.816+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:48:47.512+0800"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:48:47.504+0800"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:45:26.565+0800"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:45:26.557+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:44:16.030+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-02T16:32:42.342+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T19:06:20.362+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T19:05:57.728+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T18:15:07.907+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T17:04:41.814+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T17:04:30.264+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T17:03:20.868+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T17:00:27.000+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:59:51.632+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:58:44.125+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:55:58.277+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:52:48.659+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:52:14.067+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:51:39.703+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:49:59.440+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:49:19.954+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:47:43.225+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:46:37.001+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:45:22.478+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:44:32.365+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:44:01.805+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:43:35.381+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:39:41.484+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:38:28.888+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:38:01.266+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:37:48.811+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:37:14.413+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:37:01.079+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:36:36.798+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:36:17.769+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:35:28.775+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:35:11.777+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:30:57.785+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:28:59.421+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:28:49.148+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:27:31.596+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:26:04.165+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:25:35.879+0800"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="testTPU" solutionName="solution1" date="2022-11-01T16:22:43.407+0800"/>
-      </csimLog>
+      <csimLog/>
     </logs>
   </errorLogs>
   <warningLogs>

@@ -1,4 +1,4 @@
-<project xmlns="com.autoesl.autopilot.project" name="testTPU" top="matrix_mult">
+<project xmlns="com.autoesl.autopilot.project" name="testTPU" top="im2col">
     <files>
         <file name="testTPU/src/im2col.cpp" sc="0" tb="false" cflags=""/>
         <file name="testTPU/src/im2col.h" sc="0" tb="false" cflags=""/>

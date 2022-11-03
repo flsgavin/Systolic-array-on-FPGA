@@ -18541,3 +18541,187 @@ INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
 INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
+==============================================================
+File generated on Thu Nov 03 20:04:23 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/sa.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/instr.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/im2col.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:15 . Memory (MB): peak = 105.820 ; gain = 20.469
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:15 . Memory (MB): peak = 105.820 ; gain = 20.469
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:15 . Memory (MB): peak = 107.551 ; gain = 22.199
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:15 . Memory (MB): peak = 107.906 ; gain = 22.555
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1.1' (testTPU/src/sa.cpp:48) in function 'matrix_mult' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1.1' (testTPU/src/sa.cpp:51) in function 'matrix_mult' completely with a factor of 32.
+INFO: [XFORM 203-131] Reshaping array 'A' (testTPU/src/sa.cpp:43) in dimension 2 completely.
+INFO: [XFORM 203-131] Reshaping array 'B' (testTPU/src/sa.cpp:43) in dimension 1 completely.
+INFO: [XFORM 203-11] Balancing expressions in function 'matrix_mult' (testTPU/src/sa.cpp:43)...61 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:16 . Memory (MB): peak = 130.930 ; gain = 45.578
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (testTPU/src/sa.cpp:47:15) in function 'matrix_mult'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:16 . Memory (MB): peak = 130.930 ; gain = 45.578
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrix_mult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 16.404 seconds; current allocated memory: 81.283 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.102 seconds; current allocated memory: 82.014 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrix_mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/A' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/B' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/C' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrix_mult/relu' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrix_mult' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrix_mult'.
+INFO: [HLS 200-111]  Elapsed time: 0.227 seconds; current allocated memory: 83.401 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:03 ; elapsed = 00:00:18 . Memory (MB): peak = 136.836 ; gain = 51.484
+INFO: [SYSC 207-301] Generating SystemC RTL for matrix_mult.
+INFO: [VHDL 208-304] Generating VHDL RTL for matrix_mult.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrix_mult.
+INFO: [HLS 200-112] Total elapsed time: 18.034 seconds; peak allocated memory: 83.401 MB.
+==============================================================
+File generated on Thu Nov 03 20:07:16 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/sa.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/instr.cpp' ... 
+INFO: [HLS 200-10] Analyzing design file 'testTPU/src/im2col.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 106.180 ; gain = 20.703
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 106.180 ; gain = 20.703
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 107.473 ; gain = 21.996
+INFO: [HLS 200-10] Checking synthesizability ...
+ERROR: [SYNCHK 200-11] testTPU/src/im2col.cpp:31: Argument 'map.x' of function 'im2col' (testTPU/src/im2col.cpp:30) has an unsynthesizable type (possible cause(s): pointer to pointer or global pointer).
+ERROR: [SYNCHK 200-61] testTPU/src/im2col.cpp:34: unsupported memory access on variable 'map.x' which is (or contains) an array with unknown size at compile time.
+INFO: [SYNCHK 200-10] 2 error(s), 0 warning(s).
+ERROR: [HLS 200-70] Synthesizability check failed.
+==============================================================
+File generated on Thu Nov 03 20:29:19 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+==============================================================
+File generated on Thu Nov 03 20:30:49 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+==============================================================
+File generated on Thu Nov 03 20:31:47 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+==============================================================
+File generated on Thu Nov 03 20:33:58 +0800 2022
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2018.3 (64-bit)
+SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.25ns.
+INFO: [HLS 200-10] Setting target device to 'xczu9eg-ffvb1156-2-i'
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1172] Optimizing floating point zeros and discarding its signedness.
+INFO: [XFORM 203-1173] Reordering floating point operations aggressively.
+INFO: [XFORM 203-1176] Optimizing floating point comparison without checking NaN.
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: config_sdx -optimization_level=none
+INFO: [HLS 200-435] Setting 'config_sdx -target' configuration: set_clock_uncertainty default
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
