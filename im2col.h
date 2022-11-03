@@ -7,4 +7,7 @@ struct Pos{
 	Pos(int i, int j){
 		x = i; y = j;
 	}
+	Pos(){
+		x = -1; y = -1;
+	}
 };
