@@ -5,3 +5,4 @@ solution1/
 .cproject
 .project
 *.xml
+*.app
