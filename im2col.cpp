@@ -33,7 +33,7 @@ void im2col(int feature_h, int feature_w, int feature_c, int kernel_size, int st
 		for(int j = 0; j < out_w; j++){
 			int ii = map[i][j].x;
 			int jj = map[i][j].y;
-			buf_result[write_addr + i * out_w + j] = buf_result[read_addr + ii * feature_w + jj];
+			buf_result[write_addr + i * out_w + j] = buf_result[read_addr + ii * feature_w * feature_h + jj];
 		}
 	}
 }

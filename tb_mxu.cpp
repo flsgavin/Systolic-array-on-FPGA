@@ -63,6 +63,8 @@ int main(){
 
 	Pos** map = generate_map(3, 3, 3, 2, 1, out_h, out_w);
 
+//	for(int i = 0; i < )
+
 	im2col(3, 3, 3, 2, 1, out_h, out_w, map, buf_result, 0, 1024 * 16);
 
 	for(int i = 0; i < 3; i++){
