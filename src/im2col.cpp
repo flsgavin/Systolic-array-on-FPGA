@@ -25,7 +25,7 @@ void generate_map(int feature_h, int feature_w, int feature_c, int kernel_size, 
 }
 
 void get_map_size(int feature_h, int feature_w, int feature_c, int kernel_size, int stride, int& out_h, int& out_w){
-	out_h = feature_c*((feature_w - kernel_size) / stride + 1) * ((feature_h - kernel_size) / stride + 1);			//C*((Wi-K)/s+1)*((Hi-K)/s+1);
+	out_h = feature_c * ((feature_w - kernel_size) / stride + 1) * ((feature_h - kernel_size) / stride + 1);			//C*((Wi-K)/s+1)*((Hi-K)/s+1);
 	out_w = kernel_size * kernel_size;
 }
 
