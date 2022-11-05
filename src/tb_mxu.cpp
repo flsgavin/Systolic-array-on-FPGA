@@ -51,6 +51,7 @@ int main(){
 	load_weight(ddr, buf_weight, 0, kernel_size * kernel_size * kernel_num);
 
 	load_weight_from_buffer(buf_weight, A, kernel_size, kernel_num, 0);
+
 	for(int i = 0; i < N; i++){
 		for(int j = 0; j < N; j++){
 			printf("%f ", A[i][j]);

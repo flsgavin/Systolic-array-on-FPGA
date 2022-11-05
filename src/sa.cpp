@@ -15,6 +15,29 @@ void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_S
 		}
 	}
 }
+
+void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w, int h, int buf_start){
+#pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
+	if(w > N || h > N)
+		return;
+	int index = buf_start;
+	for(int i = 0; i < h; i++){
+#pragma HLS PIPELINE II = 1
+		for(int j = 0; j < N; j++){
+			if(j < w)
+				B[i][j] = buf_feature[index++];
+			else
+				B[i][j] = 0;
+		}
+	}
+	for(int i = h; i < N; i++){
+#pragma HLS PIPELINE II = 1
+		for(int j = 0; j < N; j++){
+			B[i][j] = 0;
+		}
+	}
+}
+
 void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start){
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
 	int kk = kernel_size * kernel_size;
