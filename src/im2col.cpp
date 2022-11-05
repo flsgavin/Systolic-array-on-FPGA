@@ -30,6 +30,7 @@ void get_map_size(int feature_h, int feature_w, int feature_c, int kernel_size, 
 }
 
 
+
 void im2col(int feature_h, int feature_w, int feature_c, int kernel_size, int stride, int out_h,
 		int out_w, MTYPE buf_map[MAP_SIZE], DTYPE buf_result[BUF_SIZE], int read_addr, int write_addr){
 	for(int i = 0; i < out_h; i++){

@@ -5,11 +5,12 @@
 #define LEFT_SHIFT 5 		// logN
 
 #define BUF_SIZE 32 * 1024
-#define DTYPE int
+#define DTYPE float
 
 #define ACTIVE true
 #define NO_ACTIVE false
 
+void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start);
 
 void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE],
 		int A_start, int B_start, DTYPE A[N][N], DTYPE B[N][N]);

@@ -30,8 +30,12 @@ int main(){
 	ddr_instr = (ITYPE *) malloc(sizeof(ITYPE) * 3300);
 
 	FILE *fid;
-	fid = fopen("feature.dat", "rb");
+	fid = fopen("layer_1_weights.bin", "rb");
 	fread(ddr, sizeof(DTYPE), 16384, fid);
+//	for(int i = 0; i < 100; i++){
+//		printf("%f ", ddr[i]);
+//	}
+//	printf("\n");
 	static DTYPE buf_feature[BUF_SIZE];
 	static DTYPE buf_weight[BUF_SIZE];
 	static DTYPE buf_result[BUF_SIZE];
@@ -42,7 +46,27 @@ int main(){
 //	load_feature(ddr, buf_feature, 0, 4096);
 //
 //
-//	load_weight(ddr, buf_weight, 0, 4096);
+	int kernel_size = 5;
+	int kernel_num = 10;
+	load_weight(ddr, buf_weight, 0, kernel_size * kernel_size * kernel_num);
+
+	load_weight_from_buffer(buf_weight, A, kernel_size, kernel_num, 0);
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			printf("%f ", A[i][j]);
+		}
+		printf("\n");
+	}
+	for(int c = 0; c < 10; c++){
+		for(int i = 0; i < 5; i++){
+			for(int j = 0; j < 5; j++){
+				printf("%f ", buf_weight[c * 5 * 5 + i * 5 + j]);
+			}
+			printf("\n");
+		}
+		printf("+++++++++++++++++++++++++++++++\n");
+	}
+
 //
 //	load_matrix_from_buffer(buf_weight, buf_feature, 0, 0, A, B);
 //	matrix_mult(A, B, C, ACTIVE);
@@ -68,12 +92,12 @@ int main(){
 
 	im2col(32, 32, 3, 2, 1, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
-	for(int i = 0; i < out_h; i++){
-		for(int j = 0; j < out_w; j++){
-			printf("%d ", buf_result[1024 * 16 + i * out_w + j]);
-		}
-		printf("\n");
-	}
+//	for(int i = 0; i < out_h; i++){
+//		for(int j = 0; j < out_w; j++){
+//			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+//		}
+//		printf("\n");
+//	}
 
 
 }

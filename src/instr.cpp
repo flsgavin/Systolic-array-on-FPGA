@@ -95,6 +95,9 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 		case(OP_SAVE_MTX):{
 			break;
 		}
+
+		//TODO : add instruction im2col
+
 		default:
 			return;
 		}
