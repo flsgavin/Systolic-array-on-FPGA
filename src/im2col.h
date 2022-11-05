@@ -4,17 +4,6 @@
 #define MAP_SIZE 64 * 1024
 #define MTYPE ap_uint<32>
 
-struct Pos{
-	int x;
-	int y;
-	Pos(int i, int j){
-		x = i; y = j;
-	}
-	Pos(){
-		x = -1; y = -1;
-	}
-};
-
 void reset_map(MTYPE buf_map[MAP_SIZE]);
 
 void generate_map(int feature_h, int feature_w, int feature_c, int kernel_size, int stride, int out_h, int out_w, MTYPE buf_map[MAP_SIZE]);

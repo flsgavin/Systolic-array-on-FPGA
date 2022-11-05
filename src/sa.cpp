@@ -16,7 +16,7 @@ void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_S
 	}
 }
 
-void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w, int h, int buf_start){
+void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w, int h, int buf_start, int converted_w){
 #pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
 	if(w > N || h > N)
 		return;
@@ -28,6 +28,9 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 				B[i][j] = buf_feature[index++];
 			else
 				B[i][j] = 0;
+			if(j == N){
+				index = index - N + converted_w + 1;
+			}
 		}
 	}
 	for(int i = h; i < N; i++){
@@ -41,9 +44,7 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start){
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
 	int kk = kernel_size * kernel_size;
-	if(kk > N)
-		return;
-	if(kernel_num > N)
+	if(kk > N || kernel_num > N)
 		return;
 	int index = buf_start;
 	for(int i = 0; i < kernel_num; i++){
@@ -62,6 +63,7 @@ void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kern
 		}
 	}
 }
+
 //void write_matrix_to_buffer(DTYPE buf_feature[BUF_SIZE], int C_start, DTYPE C[N][N]){
 //#pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
 //	for(int i = 0; i < N; i++){
@@ -93,7 +95,7 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu){
 	for(int i = 0; i < N; i++){
 		for(int j = 0; j < N; j++){
 #pragma HLS PIPELINE II = 1
-			int temp = 0;
+			DTYPE temp = 0.0;
 			for(int k = 0; k < N; k++){
 				temp += A[i][k] * B[k][j];
 			}
@@ -101,8 +103,16 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu){
 				C[i][j] = temp > 0 ? temp : 0;
 			else
 				C[i][j] = temp;
+
 		}
 	}
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			printf("%f ", C[i][j]);
+		}
+		printf("\n");
+	}
+	printf("_____________________________________________________________________________\n");
 }
 
 inline DTYPE max(DTYPE a, DTYPE b){

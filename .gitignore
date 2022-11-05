@@ -7,3 +7,4 @@ solution1/
 *.xml
 *.app
 python/
+Debug/
