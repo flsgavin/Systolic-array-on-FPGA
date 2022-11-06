@@ -25,11 +25,12 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 #pragma HLS PIPELINE II = 1
 		for(int j = 0; j < N; j++){
 			if(j < w)
-				B[i][j] = buf_feature[index++];
+				B[i][j] = buf_feature[index];
 			else
 				B[i][j] = 0;
-			if(j == N){
-				index = index - N + converted_w + 1;
+			index++;
+			if(j == N - 1){
+				index = index - N + converted_w;
 			}
 		}
 	}
@@ -64,16 +65,6 @@ void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kern
 	}
 }
 
-//void write_matrix_to_buffer(DTYPE buf_feature[BUF_SIZE], int C_start, DTYPE C[N][N]){
-//#pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
-//	for(int i = 0; i < N; i++){
-//#pragma HLS PIPELINE II = 1
-//		for(int j = 0; j < N; j++){
-//			int offset = i << LEFT_SHIFT + j;
-//			buf_feature[C_start + offset] = C[i][j];
-//		}
-//	}
-//}
 
 void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr){
 #pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
@@ -106,13 +97,6 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu){
 
 		}
 	}
-	for(int i = 0; i < N; i++){
-		for(int j = 0; j < N; j++){
-			printf("%f ", C[i][j]);
-		}
-		printf("\n");
-	}
-	printf("_____________________________________________________________________________\n");
 }
 
 inline DTYPE max(DTYPE a, DTYPE b){
@@ -132,6 +116,4 @@ void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]){
 	}
 }
 
-//void im2col(DTYPE buf_result[BUF_SIZE], int feature_h, int feature_w, int feature_c, int kernel_size, int read_addr, int write_addr){
-//
-//}
+
