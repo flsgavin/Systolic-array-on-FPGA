@@ -115,12 +115,12 @@ int main(){
 
 	im2col(32, 32, 3, 2, 1, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
-//	for(int i = 0; i < out_h; i++){
-//		for(int j = 0; j < out_w; j++){
-//			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
-//		}
-//		printf("\n");
-//	}
+	for(int i = 0; i < out_h; i++){
+		for(int j = 0; j < out_w; j++){
+			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+		}
+		printf("\n");
+	}
 
 
 }
