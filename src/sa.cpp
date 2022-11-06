@@ -66,15 +66,28 @@ void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kern
 }
 
 
-void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr){
+
+/*
+ * @parameter
+ * 		buf_start_addr 特征图首行偏移地址
+ *
+ *
+ */
+void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr, int w, int h, int result_total_w){
 #pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
+	if(w > N || h > N)
+		return;
 	if(buf_start_addr + (N << LEFT_SHIFT) >= BUF_SIZE)  // buf_start_addr + N * N >= BUF_SIZE
 		return;
-	for(int i = 0; i < N; i++){
+	int index = buf_start_addr;
+	for(int i = 0; i < h; i++){
 #pragma HLS PIPELINE II = 1
-		for(int j = 0; j < N; j++){
-			int offset = (i << LEFT_SHIFT) + j;
-			buf_result[buf_start_addr + offset] = C[i][j];
+		for(int j = 0; j < w; j++){
+			buf_result[index] = C[i][j];
+			index++;
+			if(j == w - 1){
+				index = index + result_total_w - w;
+			}
 		}
 	}
 }

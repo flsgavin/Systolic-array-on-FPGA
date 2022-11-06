@@ -86,6 +86,7 @@ int main(){
 	}
 
 
+	int buf_start_addr = 0;
 	for(int buf_offset = 0; buf_offset < 24 * 24; buf_offset += N){
 		int w = -1;
 		if(24 * 24 - buf_offset >= 32){
@@ -95,7 +96,15 @@ int main(){
 		}
 		load_feature_from_buffer(buf_feature, B, w, 25, buf_offset, 24 * 24);
 		matrix_mult(A, B, C, false);
+		write_back_to_result_buffer(C, buf_result, buf_start_addr, w, 10, 24 * 24);
+		buf_start_addr += w;
+	}
 
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 24 * 24; j++){
+			printf("%f ", buf_result[i * 24 * 24 + j]);
+		}
+		printf("\n");
 	}
 
 
@@ -115,12 +124,12 @@ int main(){
 
 	im2col(32, 32, 3, 2, 1, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
-	for(int i = 0; i < out_h; i++){
-		for(int j = 0; j < out_w; j++){
-			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
-		}
-		printf("\n");
-	}
+//	for(int i = 0; i < out_h; i++){
+//		for(int j = 0; j < out_w; j++){
+//			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+//		}
+//		printf("\n");
+//	}
 
 
 }
