@@ -42,6 +42,8 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 	}
 }
 
+
+// TODO fix it
 void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start){
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
 	int kk = kernel_size * kernel_size;
@@ -65,6 +67,15 @@ void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kern
 	}
 }
 
+void reset_C(DTYPE C[N][N]){
+#pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
+	for(int i = 0; i < N; i++){
+#pragma HLS PIPELINE II = 1
+		for(int j = 0; j < N; j++){
+			C[i][j] = 0;
+		}
+	}
+}
 
 
 /*
@@ -133,7 +144,7 @@ inline DTYPE max(DTYPE a, DTYPE b){
  * convered_feature_h = feature_c * 4
  * write back to buff start line
  */
-void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c){
+void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c, bool relu){
 	int convered_feature_h = feature_c * 4;
 	int index = 0;
 	int offset = (converted_feature_w << 1);
@@ -144,7 +155,11 @@ void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int f
 			DTYPE maxVal1 = max(buf_feature[index], buf_feature[index + converted_feature_w]);
 			index += offset;
 			DTYPE maxVal2 = max(buf_feature[index], buf_feature[index + converted_feature_w]);
-			buf_feature[write_index++] = max(maxVal1, maxVal2);
+			DTYPE temp = max(maxVal1, maxVal2);
+			if(relu){
+				if(temp < 0) temp = 0.0;
+			}
+			buf_feature[write_index++] = temp;
 		}
 	}
 }

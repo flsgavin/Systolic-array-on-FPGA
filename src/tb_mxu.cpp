@@ -126,17 +126,16 @@ int main(){
 	generate_map(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map);
 
 
-
 	im2col(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
 
 
-	for(int i = 0; i < out_h; i++){
-		for(int j = 0; j < out_w; j++){
-			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
-		}
-		printf("\n");
-	}
+//	for(int i = 0; i < out_h; i++){
+//		for(int j = 0; j < out_w; j++){
+//			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+//		}
+//		printf("\n");
+//	}
 
 	//copy result to feature
 
@@ -146,20 +145,50 @@ int main(){
 	}
 
 
-	max_2x2_pooling(buf_feature, out_w, feature_c);
+	// max pooling relu
+
+	max_2x2_pooling(buf_feature, out_w, feature_c, true);
 
 
 	printf("\n\n\n=====================%d================================\n\n\n", out_w);
 	for(int k = 0; k < 10; k++){
-//		for(int i = 0; i < 12; i++){
-//			for(int j = 0; j < 12; j++){
-//				printf("%f ", buf_feature[k * i * 12 + j]);
-//			}
-//			printf("\n");
-//		}
 		for(int i = 0; i < 144; i++){
 			printf("%f ", buf_feature[k * 144 + i]);
+			if((i + 1)% 12 == 0){
+				printf("\n");
+			}
 		}
 		printf("\n\n\n");
 	}
+
+	feature_h = 12;
+	feature_w = 12;
+	feature_c = 10;
+	kernel_size = 5;
+	stride = 1;
+
+	get_map_size(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w);
+	generate_map(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map);
+
+	for(int i = 0; i < 10 * 12 * 12; i++){
+		buf_result[i] = buf_feature[i];
+	}
+
+	im2col(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
+
+	printf("%d  %d \n", out_h, out_w);
+
+
+	FILE *fid2;
+	fid2 = fopen("layer_2_weights.bin", "rb");
+	fread(ddr, sizeof(DTYPE), 5 * 5 * 20, fid2);
+
+	kernel_size = 5;
+	kernel_num = 20;
+	load_weight(ddr, buf_weight, 0, kernel_size * kernel_size * kernel_num);
+
+	for(int index = 0; index < kernel_size * kernel_size * feature_c; index += N){
+		load_weight_from_buffer(buf_weight, A, kernel_size, kernel_num, buf_start);
+	}
+
 }
