@@ -100,36 +100,66 @@ int main(){
 		buf_start_addr += w;
 	}
 
-	for(int i = 0; i < 10; i++){
-		for(int j = 0; j < 24 * 24; j++){
-			printf("%f ", buf_result[i * 24 * 24 + j]);
-		}
-		printf("\n");
-	}
-
-
-
-	for(int i = 0; i < 32 * 32 * 3; i++){
-		buf_result[i] = i + 1;
-	}
-	int out_h = -1;
-	int out_w = -1;
-	get_map_size(32, 32, 3, 2, 1, out_h, out_w);
-
-	assert(out_h != -1 && out_w != -1);
-
-	generate_map(32, 32, 3, 2, 1, out_h, out_w, buf_map);
-
-
-
-	im2col(32, 32, 3, 2, 1, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
-
-//	for(int i = 0; i < out_h; i++){
-//		for(int j = 0; j < out_w; j++){
-//			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+//	for(int i = 0; i < 10; i++){
+//		for(int j = 0; j < 24 * 24; j++){
+//			printf("%f ", buf_result[i * 24 * 24 + j]);
 //		}
 //		printf("\n");
 //	}
 
 
+
+//	for(int i = 0; i < 32 * 32 * 3; i++){
+//		buf_result[i] = i + 1;
+//	}
+	int out_h = -1;
+	int out_w = -1;
+	int feature_h = 24;
+	int feature_w = 24;
+	int feature_c = 10;
+	kernel_size = 2;
+	int stride = 2;
+	get_map_size(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w);
+
+	assert(out_h != -1 && out_w != -1);
+
+	generate_map(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map);
+
+
+
+	im2col(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
+
+
+
+	for(int i = 0; i < out_h; i++){
+		for(int j = 0; j < out_w; j++){
+			printf("%f ", buf_result[1024 * 16 + i * out_w + j]);
+		}
+		printf("\n");
+	}
+
+	//copy result to feature
+
+
+	for(int i = 0; i < out_h * out_w; i++){
+		buf_feature[i] = buf_result[1024 * 16 + i];
+	}
+
+
+	max_2x2_pooling(buf_feature, out_w, feature_c);
+
+
+	printf("\n\n\n=====================%d================================\n\n\n", out_w);
+	for(int k = 0; k < 10; k++){
+//		for(int i = 0; i < 12; i++){
+//			for(int j = 0; j < 12; j++){
+//				printf("%f ", buf_feature[k * i * 12 + j]);
+//			}
+//			printf("\n");
+//		}
+		for(int i = 0; i < 144; i++){
+			printf("%f ", buf_feature[k * 144 + i]);
+		}
+		printf("\n\n\n");
+	}
 }

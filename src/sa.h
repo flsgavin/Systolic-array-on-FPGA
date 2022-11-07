@@ -4,7 +4,7 @@
 #define N 32
 #define LEFT_SHIFT 5 		// logN
 
-#define BUF_SIZE 32 * 1024
+#define BUF_SIZE 64 * 1024
 #define DTYPE float
 
 #define ACTIVE true
@@ -21,7 +21,8 @@ void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int 
 
 void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu);
 
-void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]);
+//void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]);
 
+void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c);
 
 #endif

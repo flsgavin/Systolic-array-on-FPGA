@@ -116,17 +116,36 @@ inline DTYPE max(DTYPE a, DTYPE b){
 	return a > b ? a : b;
 }
 
-void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]){
-#pragma HLS ARRAY_RESHAPE variable = feature_in complete dim = 2
-#pragma HLS ARRAY_RESHAPE variable = feature_out complete dim = 2
-	for(int i = 0; i < N; i += 2){
-#pragma HLS PIPELINE II = 1
-		for(int j = 0; j < N; j += 2){
-			DTYPE t1 = max(feature_in[i][j], feature_in[i][j + 1]);
-			DTYPE t2 = max(feature_in[i + 1][j], feature_in[i + 1][j + 1]);
-			feature_out[i / 2][j / 2] = max(t1, t2);
+//void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]){
+//#pragma HLS ARRAY_RESHAPE variable = feature_in complete dim = 2
+//#pragma HLS ARRAY_RESHAPE variable = feature_out complete dim = 2
+//	for(int i = 0; i < N; i += 2){
+//#pragma HLS PIPELINE II = 1
+//		for(int j = 0; j < N; j += 2){
+//			DTYPE t1 = max(feature_in[i][j], feature_in[i][j + 1]);
+//			DTYPE t2 = max(feature_in[i + 1][j], feature_in[i + 1][j + 1]);
+//			feature_out[i / 2][j / 2] = max(t1, t2);
+//		}
+//	}
+//}
+
+/*
+ * convered_feature_h = feature_c * 4
+ * write back to buff start line
+ */
+void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c){
+	int convered_feature_h = feature_c * 4;
+	int index = 0;
+	int offset = (converted_feature_w << 1);
+	int write_index = 0;
+	for(int i = 0; i < convered_feature_h; i += 4){
+		for(int j = 0; j < converted_feature_w; j++){
+			index = i * converted_feature_w + j;
+			DTYPE maxVal1 = max(buf_feature[index], buf_feature[index + converted_feature_w]);
+			index += offset;
+			DTYPE maxVal2 = max(buf_feature[index], buf_feature[index + converted_feature_w]);
+			buf_feature[write_index++] = max(maxVal1, maxVal2);
 		}
 	}
 }
-
 
