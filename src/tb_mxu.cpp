@@ -95,7 +95,7 @@ int main(){
 			w = 24 * 24 - buf_offset;
 		}
 		load_feature_from_buffer(buf_feature, B, w, 25, buf_offset, 24 * 24);
-		matrix_mult(A, B, C, false);
+		matrix_mult(A, B, C);
 		write_back_to_result_buffer(C, buf_result, buf_start_addr, w, 10, 24 * 24);
 		reset_C(C);
 		buf_start_addr += w;
@@ -215,7 +215,7 @@ int main(){
 			int feature_addr = index * 8 * 8 + j;
 			int feature_h = weight_w;
 			load_feature_from_buffer(buf_feature, B, N, feature_h, feature_addr, 8 * 8);
-			matrix_mult(A, B, C, false);
+			matrix_mult(A, B, C);
 		}
 //		printf("%d\n", j);
 		write_back_to_result_buffer(C, buf_result, buf_start_addr + j, N, N, 8 * 8);

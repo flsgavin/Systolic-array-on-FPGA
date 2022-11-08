@@ -10,6 +10,8 @@
 #define ACTIVE true
 #define NO_ACTIVE false
 
+
+
 void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w, int h, int buf_start, int converted_w);
 
 void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start, int converted_w);
@@ -18,7 +20,7 @@ void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_S
 
 void write_back_to_result_buffer(DTYPE C[N][N], DTYPE buf_result[BUF_SIZE], int buf_start_addr, int w, int h, int result_total_w);
 
-void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu);
+void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]);
 
 //void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]);
 
