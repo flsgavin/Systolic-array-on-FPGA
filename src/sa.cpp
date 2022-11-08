@@ -44,9 +44,16 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 
 
 // TODO fix it
-void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kernel_size, int kernel_num, int buf_start){
+
+/*
+ * buf_start 		权重首行偏移地址
+ * kernel_num 		本次加载权重行数
+ * weight_w 本次加载权重列数
+ * converted_w 		buffer中的逻辑行宽度
+ */
+void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int weight_w, int kernel_num, int buf_start, int converted_w){
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
-	int kk = kernel_size * kernel_size;
+	int kk = weight_w;
 	if(kk > N || kernel_num > N)
 		return;
 	int index = buf_start;
@@ -54,9 +61,13 @@ void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int kern
 #pragma HLS PIPELINE II = 1
 		for(int j = 0; j < N; j++){
 			if(j < kk)
-				A[i][j] = buf_weight[index++];
+				A[i][j] = buf_weight[index];
 			else
 				A[i][j] = 0;
+			index++;
+			if(j == N - 1){
+				index = index - N + converted_w;
+			}
 		}
 	}
 	for(int i = kernel_num; i < N; i++){
@@ -114,10 +125,10 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N], bool relu){
 			for(int k = 0; k < N; k++){
 				temp += A[i][k] * B[k][j];
 			}
-			if(relu)
-				C[i][j] = temp > 0 ? temp : 0;
-			else
-				C[i][j] = temp;
+//			if(relu)
+//				C[i][j] = temp > 0 ? temp : 0;
+//			else
+				C[i][j] += temp;
 
 		}
 	}
