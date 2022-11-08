@@ -245,11 +245,57 @@ int main(){
 	}
 	max_2x2_pooling(buf_feature, out_w, feature_c, true);
 
-	for(int i = 0; i < 20; i++){
-		for(int j = 0; j < 16; j++){
-			printf("%f ", buf_feature[i * 16 + j]);
-			if((j + 1) % 4 == 0) printf("\n");
+//	for(int i = 0; i < 20; i++){
+//		for(int j = 0; j < 16; j++){
+//			printf("%f ", buf_feature[i * 16 + j]);
+//			if((j + 1) % 4 == 0) printf("\n");
+//		}
+//		printf("\n\n\n");
+//	}
+
+	FILE *fid_3;
+	fid_3 = fopen("layer_3_weights.bin", "rb");
+	fread(ddr, sizeof(DTYPE), 10 * 20 * 4 * 4, fid_3);
+
+	index = 0;
+	for(int i = 0; i < 10; i++){
+		DTYPE temp = 0;
+		for(int j = 0; j < 320; j++){
+			temp += ddr[i * 320 + j] * buf_feature[j];
 		}
-		printf("\n\n\n");
+		buf_result[i] = temp;
 	}
+
+	FILE *fid_4;
+	fid_4 = fopen("layer_4_weights.bin", "rb");
+	fread(ddr, sizeof(DTYPE), 10, fid_4);
+	DTYPE maxNum = buf_result[0];
+	int res_num = 0;
+	for(int i = 0; i < 10; i++){
+		buf_result[i] += ddr[i];
+		printf("%f ", buf_result[i]);
+		if(maxNum < buf_result[i]){
+			maxNum = buf_result[i];
+			res_num = i;
+		}
+	}
+	printf("\n");
+
+	printf("=================================================\n");
+	printf("=================================================\n");
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("==                    %d                        ==\n", res_num);
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("==                                             ==\n");
+	printf("=================================================\n");
+	printf("=================================================\n");
+
+
+
+
 }
