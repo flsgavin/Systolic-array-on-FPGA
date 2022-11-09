@@ -6,26 +6,8 @@
 
 
 
-int main(){
-//	int A[N][N] = {{1,2,3,4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15,16}};
-//	int B[N][N] = {{2,2,3,4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15,16}};
-//	int C[N][N] = {};
-//	int D[N/2][N/2] = {};
-//	matrix_mult(A, B, C, true);
-//	max_2x2_pooling(C, D);
-//	for(int i = 0; i < N; i++){
-//		for(int j = 0; j < N; j++){
-//			printf("%d ", C[i][j]);
-//		}
-//		printf("\n");
-//	}
-//
-//	for(int i = 0; i < N / 2; i++){
-//		for(int j = 0; j < N / 2; j++){
-//			printf("%d ", D[i][j]);
-//		}
-//		printf("\n");
-//	}
+int main1(){
+
 	DTYPE A[N][N];
 	DTYPE B[N][N];
 	static DTYPE C[N][N];
@@ -45,10 +27,7 @@ int main(){
 	FILE *fid;
 	fid = fopen("layer_1_weights.bin", "rb");
 	fread(ddr, sizeof(DTYPE), 5 * 5 * 10, fid);
-//	for(int i = 0; i < 100; i++){
-//		printf("%f ", ddr[i]);
-//	}
-//	printf("\n");
+
 	static DTYPE buf_feature[BUF_SIZE];
 	static DTYPE buf_weight[BUF_SIZE];
 	static DTYPE buf_result[BUF_SIZE];
@@ -58,6 +37,7 @@ int main(){
 
 	int kernel_size = 5;
 	int kernel_num = 10;
+
 	load_weight(ddr, buf_weight, 0, kernel_size * kernel_size * kernel_num);
 
 	load_weight_from_buffer(buf_weight, A, kernel_size * kernel_size, kernel_num, 0, kernel_size * kernel_size * 1);
@@ -86,11 +66,12 @@ int main(){
 	}
 
 
+
 	int buf_start_addr = 0;
 	for(int buf_offset = 0; buf_offset < 24 * 24; buf_offset += N){
 		int w = -1;
-		if(24 * 24 - buf_offset >= 32){
-			w = 32;
+		if(24 * 24 - buf_offset >= N){
+			w = N;
 		}else{
 			w = 24 * 24 - buf_offset;
 		}
@@ -100,6 +81,19 @@ int main(){
 		reset_C(C);
 		buf_start_addr += w;
 	}
+
+//	int index_ = 0;
+//	for(int k = 0; k < 10; k++){
+//		for(int i = 0; i < 24; i++){
+//			for(int j = 0; j < 24; j++){
+//				printf("%f ", buf_result[index_++]);
+//			}
+//			printf("\n");
+//		}
+//		printf("\n\n\n");
+//	}
+
+	return 0;
 
 //	for(int i = 0; i < 10; i++){
 //		for(int j = 0; j < 24 * 24; j++){
@@ -298,4 +292,16 @@ int main(){
 
 
 
+}
+
+int main(){
+	DTYPE* ddr = (DTYPE *) malloc(sizeof(DTYPE) * 1024 * 1024);
+	FILE *fid_ddr;
+	fid_ddr = fopen("ddr.bin", "rb");
+	fread(ddr, sizeof(DTYPE), 1024 * 1024, fid_ddr);
+	ITYPE* ddr_instr = (ITYPE *) malloc(sizeof(ITYPE) * 3300);
+	FILE *fid_instr;
+	fid_instr = fopen("instr.bin", "rb");
+	fread(ddr_instr, sizeof(ITYPE), 1024, fid_instr);
+	dsa(ddr, ddr_instr, 1000, 1);
 }

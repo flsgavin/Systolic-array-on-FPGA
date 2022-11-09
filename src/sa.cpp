@@ -18,6 +18,7 @@ void load_matrix_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_S
 
 void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w, int h, int buf_start, int converted_w){
 //#pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
+	printf("load_feature_from_buffer(\n w = %d\n, h = %d buf_start = %d\n converted_w = %d\n\n\n)", w, h, buf_start, converted_w);
 	if(w > N || h > N)
 		return;
 	int index = buf_start;
@@ -40,6 +41,14 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
 			B[i][j] = 0;
 		}
 	}
+
+//	for(int i = 0; i < N; i++){
+//		for(int j = 0; j < N; j++){
+//			printf("%f ", B[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("\n\n\n");
 }
 
 
@@ -53,6 +62,7 @@ void load_feature_from_buffer(DTYPE buf_feature[BUF_SIZE], DTYPE B[N][N], int w,
  */
 void load_weight_from_buffer(DTYPE buf_weight[BUF_SIZE], DTYPE A[N][N], int weight_w, int kernel_num, int buf_start, int converted_w){
 #pragma HLS ARRAY_RESHAPE variable = A complete dim = 2
+	printf("load_weight_from_buffer(\nweight_w = %d\n, kernel_num = %d\n, buf_start = %d\n, converted_w = %d\n\n\n)", weight_w, kernel_num, buf_start, converted_w);
 	int kk = weight_w;
 	if(kk > N || kernel_num > N)
 		return;
@@ -132,6 +142,13 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]){
 
 		}
 	}
+//	for(int i = 0; i < N; i++){
+//		for(int j = 0; j < N; j++){
+//			printf("%f ", C[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("\n\n\n");
 }
 
 inline DTYPE max(DTYPE a, DTYPE b){

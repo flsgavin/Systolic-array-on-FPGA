@@ -31,7 +31,9 @@ void load_weight(DTYPE *ddr, DTYPE buf_weight[BUF_SIZE], int ddr_offset, int len
 	}
 	for(int i = 0; i < len; i++){
 		buf_weight[i] = ddr[i + ddr_offset];
+//		printf("%d  %f ", i, buf_weight[i]);
 	}
+//	printf("\n");
 }
 
 void load_feature(DTYPE *ddr, DTYPE buf_feature[BUF_SIZE], int ddr_offset, int len){
@@ -66,6 +68,7 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable){
 
 	int offset = 0;
 
+	reset_C(C);
 	while(offset < instr_len && instr_len > 0){
 		int len = 0;
 		if(instr_len >= I_BUF_SIZE){
@@ -78,6 +81,16 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable){
 		offset += len;
 		run(ddr, i_buf, buf_weight, buf_feature, buf_result, len, A, B, C);
 	}
+//	int index = 0;
+//	for(int k = 0; k < 10; k++){
+//		for(int i = 0; i < 24; i++){
+//			for(int j = 0; j < 24; j++){
+//				printf("%f ", buf_result[index++]);
+//			}
+//			printf("\n");
+//		}
+//		printf("\n\n\n");
+//	}
 
 
 }
@@ -119,7 +132,7 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 			ap_uint<32> kernel_num  = instruction(59, 48);		// 12 bit
 			ap_uint<32> buf_start   = instruction(47, 24);		// 24 bit
 			ap_uint<32> converted_w = instruction(23, 0);		// 24 bit
-			load_weight_from_buffer(buf_weight, A, kernel_size, kernel_num, buf_start, converted_w);
+			load_weight_from_buffer(buf_weight, A, kernel_size * kernel_size, kernel_num, buf_start, converted_w);
 			break;
 		}
 		case(OP_LOAD_FET_MTX):{
@@ -155,9 +168,14 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 			generate_map(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map);
 			break;
 		}
-
-		//TODO : add instruction im2col
-
+		case(OP_SET_PARM):{
+			kernel_size  	= instruction(59, 48);		// 12 bit
+			break;
+		}
+		case(OP_RESET_C):{
+			reset_C(C);
+			break;
+		}
 		default:
 			return;
 		}
