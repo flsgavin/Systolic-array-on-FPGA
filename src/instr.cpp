@@ -12,6 +12,7 @@ ap_uint<32> feature_h;
 ap_uint<32> feature_w;
 ap_uint<32> feature_c;
 ap_uint<32> kernel_size;
+ap_uint<32> kernel_num;
 ap_uint<32> stride;
 int out_h;
 int out_w;
@@ -50,6 +51,26 @@ void save_back(DTYPE *ddr, DTYPE buf_result[BUF_SIZE], int ddr_offset, int len){
 	}
 }
 
+void move_result_buf_2_feature_buf(DTYPE buf_result[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int len, int result_addr, int feature_addr){
+	for(int i = 0; i < len; i++){
+		buf_feature[feature_addr + i] = buf_result[result_addr + i];
+	}
+}
+
+void set_weight_parm(int _kernel_size, int _kernel_num, int _stride){
+	kernel_size = _kernel_size;
+	kernel_num = _kernel_num;
+	stride = _stride;
+}
+
+void set_feature_parm(int _feature_w, int _feature_h, int _feature_c, int _out_w, int _out_h){
+	feature_w = _feature_w;
+	feature_h = _feature_h;
+	feature_c = _feature_c;
+	out_w = _out_w;
+	out_h = _out_h;
+}
+
 void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable){
 #pragma HLS INTERFACE m_axi depth=16384 	port=ddr
 #pragma HLS INTERFACE m_axi depth=3300 		port=ddr_instr
@@ -66,6 +87,7 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable){
 //#pragma HLS ARRAY_RESHAPE variable = B complete dim = 2
 #pragma HLS ARRAY_RESHAPE variable = C complete dim = 2
 
+	if(!enable) return;
 	int offset = 0;
 
 	reset_C(C);
@@ -81,18 +103,13 @@ void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable){
 		offset += len;
 		run(ddr, i_buf, buf_weight, buf_feature, buf_result, len, A, B, C);
 	}
-//	int index = 0;
-//	for(int k = 0; k < 10; k++){
-//		for(int i = 0; i < 24; i++){
-//			for(int j = 0; j < 24; j++){
-//				printf("%f ", buf_result[index++]);
-//			}
-//			printf("\n");
-//		}
-//		printf("\n\n\n");
-//	}
-
-
+		for(int i = 0; i < 20; i++){
+			for(int j = 0; j < 16; j++){
+				printf("%f ", buf_result[i * 16 + j]);
+				if((j + 1) % 4 == 0) printf("\n");
+			}
+			printf("\n\n\n");
+		}
 }
 
 void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], DTYPE buf_result[BUF_SIZE], int instr_len, DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]){
@@ -121,7 +138,7 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 		}
 		case(OP_MAX_POOL):{
 			ap_uint<32> relu = instruction(11, 0); // 12 bit
-			max_2x2_pooling(buf_feature, out_w, feature_c, relu);
+			max_2x2_pooling(buf_feature, buf_result, out_w, feature_c, relu);
 			break;
 		}
 		case(OP_MTX_MUL):{
@@ -129,10 +146,11 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 			break;
 		}
 		case(OP_LOAD_WEI_MTX):{
-			ap_uint<32> kernel_num  = instruction(59, 48);		// 12 bit
+			int weight_w  = instruction(59, 48);		// 12 bit
 			ap_uint<32> buf_start   = instruction(47, 24);		// 24 bit
 			ap_uint<32> converted_w = instruction(23, 0);		// 24 bit
-			load_weight_from_buffer(buf_weight, A, kernel_size * kernel_size, kernel_num, buf_start, converted_w);
+			// kernel_num ”…set _wei_parm …Ë÷√
+			load_weight_from_buffer(buf_weight, A, weight_w, kernel_num, buf_start, converted_w);
 			break;
 		}
 		case(OP_LOAD_FET_MTX):{
@@ -169,11 +187,34 @@ void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE 
 			break;
 		}
 		case(OP_SET_PARM):{
-			kernel_size  	= instruction(59, 48);		// 12 bit
+			kernel_size = instruction(59, 48);		// 12 bit
 			break;
 		}
 		case(OP_RESET_C):{
 			reset_C(C);
+			break;
+		}
+		case(OP_MOV_RES2FET):{
+			int len 			= instruction(59, 40);
+			int result_addr 	= instruction(39, 20);
+			int feature_addr 	= instruction(19, 0);
+			move_result_buf_2_feature_buf(buf_result, buf_feature, len, result_addr, feature_addr);
+			break;
+		}
+		case(OP_SET_FET_PARM):{
+			int _feature_w 	= instruction(59, 48);
+			int _feature_h 	= instruction(47, 36);
+			int _feature_c 	= instruction(35, 24);
+			int _out_w 		= instruction(23, 12);
+			int _out_h 		= instruction(11, 0);
+			set_feature_parm(_feature_w, _feature_h, _feature_c, _out_w, _out_h);
+			break;
+		}
+		case(OP_SET_WEI_PARM):{
+			int _kernel_size = instruction(59, 48);
+			int _kernel_num  = instruction(47, 36);
+			int _stride 	 = instruction(35, 24);
+			set_weight_parm(_kernel_size, _kernel_num, _stride);
 			break;
 		}
 		default:

@@ -21,6 +21,9 @@
 #define OP_GEN_MAP			9
 #define OP_SET_PARM			10
 #define OP_RESET_C			11
+#define OP_MOV_RES2FET		12
+#define OP_SET_FET_PARM		13
+#define OP_SET_WEI_PARM		14
 
 
 void load_instr(ITYPE *ddr_instr, ITYPE i_buf[I_BUF_SIZE], int instr_len, int offset);
@@ -30,6 +33,6 @@ void save_back(DTYPE *ddr, DTYPE buf_result[BUF_SIZE], int ddr_offset, int len);
 void dsa(DTYPE *ddr, ITYPE *ddr_instr, int instr_len, int enable);
 void run(DTYPE *ddr, ITYPE i_buf[I_BUF_SIZE], DTYPE buf_weight[BUF_SIZE], DTYPE buf_feature[BUF_SIZE],
 		DTYPE buf_result[BUF_SIZE], int instr_len, DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]);
-
+void move_result_buf_2_feature_buf(DTYPE buf_result[BUF_SIZE], DTYPE buf_feature[BUF_SIZE], int len, int result_addr, int feature_addr);
 
 #endif

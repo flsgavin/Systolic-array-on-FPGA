@@ -142,6 +142,23 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]){
 
 		}
 	}
+//	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+//	for(int i = 0; i < N; i++){
+//		for(int j = 0; j < N; j++){
+//			printf("%f ", A[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("\n\n\n");
+//	printf("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\n");
+//	for(int i = 0; i < N; i++){
+//		for(int j = 0; j < N; j++){
+//			printf("%f ", B[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("\n\n\n");
+//	printf("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\n");
 //	for(int i = 0; i < N; i++){
 //		for(int j = 0; j < N; j++){
 //			printf("%f ", C[i][j]);
@@ -172,7 +189,7 @@ inline DTYPE max(DTYPE a, DTYPE b){
  * convered_feature_h = feature_c * 4
  * write back to buff start line
  */
-void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c, bool relu){
+void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], DTYPE buf_result[BUF_SIZE], int converted_feature_w, int feature_c, bool relu){
 	int convered_feature_h = feature_c * 4;
 	int index = 0;
 	int offset = (converted_feature_w << 1);
@@ -187,7 +204,7 @@ void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int f
 			if(relu){
 				if(temp < 0) temp = 0.0;
 			}
-			buf_feature[write_index++] = temp;
+			buf_result[write_index++] = temp;
 		}
 	}
 }

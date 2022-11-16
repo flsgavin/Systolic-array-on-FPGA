@@ -24,7 +24,7 @@ void matrix_mult(DTYPE A[N][N], DTYPE B[N][N], DTYPE C[N][N]);
 
 //void max_2x2_pooling(DTYPE feature_in[N][N], DTYPE feature_out[N/2][N/2]);
 
-void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], int converted_feature_w, int feature_c, bool relu);
+void max_2x2_pooling(DTYPE buf_feature[BUF_SIZE], DTYPE buf_result[BUF_SIZE], int converted_feature_w, int feature_c, bool relu);
 
 void reset_C(DTYPE C[N][N]);
 

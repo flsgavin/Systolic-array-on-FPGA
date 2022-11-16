@@ -5,7 +5,6 @@
 
 
 
-
 int main1(){
 
 	DTYPE A[N][N];
@@ -82,18 +81,7 @@ int main1(){
 		buf_start_addr += w;
 	}
 
-//	int index_ = 0;
-//	for(int k = 0; k < 10; k++){
-//		for(int i = 0; i < 24; i++){
-//			for(int j = 0; j < 24; j++){
-//				printf("%f ", buf_result[index_++]);
-//			}
-//			printf("\n");
-//		}
-//		printf("\n\n\n");
-//	}
 
-	return 0;
 
 //	for(int i = 0; i < 10; i++){
 //		for(int j = 0; j < 24 * 24; j++){
@@ -103,10 +91,6 @@ int main1(){
 //	}
 
 
-
-//	for(int i = 0; i < 32 * 32 * 3; i++){
-//		buf_result[i] = i + 1;
-//	}
 	int out_h = -1;
 	int out_w = -1;
 	int feature_h = 24;
@@ -142,7 +126,7 @@ int main1(){
 
 	// max pooling relu
 
-	max_2x2_pooling(buf_feature, out_w, feature_c, true);
+	max_2x2_pooling(buf_feature, buf_result, out_w, feature_c, true);
 
 //
 //	printf("\n\n\n=====================%d================================\n\n\n", out_w);
@@ -167,9 +151,12 @@ int main1(){
 	get_map_size(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w);
 	generate_map(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map);
 
-	for(int i = 0; i < 10 * 12 * 12; i++){
-		buf_result[i] = buf_feature[i];
-	}
+
+	//test=============
+
+//	for(int i = 0; i < 10 * 12 * 12; i++){
+//		buf_result[i] = buf_feature[i];
+//	}
 
 	im2col(feature_h, feature_w, feature_c, kernel_size, stride, out_h, out_w, buf_map, buf_result, 0, 1024 * 16);
 
@@ -222,6 +209,7 @@ int main1(){
 //		}
 //		printf("\n");
 //	}
+//	return 0;
 
 	// 2x2 max pooling relu
 	feature_h = 8;
@@ -237,15 +225,20 @@ int main1(){
 	for(int i = 0; i < out_h * out_w; i++){
 		buf_feature[i] = buf_result[1024 * 16 + i];
 	}
-	max_2x2_pooling(buf_feature, out_w, feature_c, true);
+	max_2x2_pooling(buf_feature, buf_result, out_w, feature_c, true);
 
 //	for(int i = 0; i < 20; i++){
 //		for(int j = 0; j < 16; j++){
-//			printf("%f ", buf_feature[i * 16 + j]);
+//			printf("%f ", buf_result[i * 16 + j]);
 //			if((j + 1) % 4 == 0) printf("\n");
 //		}
 //		printf("\n\n\n");
 //	}
+
+	// OP_MOV_RES2FET
+	for(int i = 0; i < 20 * 16; i++){
+		buf_feature[i] = buf_result[i];
+	}
 
 	FILE *fid_3;
 	fid_3 = fopen("layer_3_weights.bin", "rb");
@@ -256,6 +249,7 @@ int main1(){
 		DTYPE temp = 0;
 		for(int j = 0; j < 320; j++){
 			temp += ddr[i * 320 + j] * buf_feature[j];
+			//temp += ddr[i * 320 + j] * buf_result[j];
 		}
 		buf_result[i] = temp;
 	}
